@@ -145,9 +145,9 @@
 
     <section id="checkout" class="container mx-auto py-16 px-6">
         <div class="max-w-lg mx-auto bg-[#161d2f] border border-cyan-500/50 p-8 rounded-3xl">
-            <h3 class="gaming-font text-xl mb-6 text-center text-cyan-400">FORM ORDER ($)</h3>
+            <h3 class="gaming-font text-xl mb-6 text-center text-cyan-400">PESAN AGORA ($)</h3>
             <form class="space-y-4">
-                <input type="text" id="custName" class="w-full bg-[#0b0f1a] border border-gray-700 p-3 rounded-lg outline-none focus:border-cyan-500" placeholder="Your Name" required>
+                <input type="text" id="custName" class="w-full bg-[#0b0f1a] border border-gray-700 p-3 rounded-lg outline-none focus:border-cyan-500" placeholder="Naran Kompletu" required>
                 
                 <select id="custProduct" class="w-full bg-[#0b0f1a] border border-gray-700 p-3 rounded-lg outline-none focus:border-cyan-500">
                     <option value="25.00">HYPER X CLOUD III - $120.00</option>
@@ -162,15 +162,15 @@
                     <option value="30.00">FUNCOOLER AL19 GAMING - $30.00</option> </select>
                     <option value="30.00">FUNCOOLER AL19 GAMING - $30.00</option> </select>
                     <option value="30.00">FUNCOOLER AL19 GAMING - $30.00</option> </select>
-                <textarea id="custAddress" class="w-full bg-[#0b0f1a] border border-gray-700 p-3 rounded-lg outline-none focus:border-cyan-500" rows="3" placeholder="Shipping Address (Timor-Leste)" required></textarea>
+                <textarea id="custAddress" class="w-full bg-[#0b0f1a] border border-gray-700 p-3 rounded-lg outline-none focus:border-cyan-500" rows="3" placeholder="Hela Fatin (Baucau-Vila)" required></textarea>
 
                 <div class="p-4 bg-[#0b0f1a] rounded-lg border border-dashed border-gray-700 flex justify-between">
-                    <span class="text-sm">Delivery Fee:</span>
+                    <span class="text-sm">Free Onkir:</span>
                     <span class="text-green-400 font-bold">+$0.00</span>
                 </div>
 
                 <button type="button" onclick="sendToWA()" class="w-full bg-cyan-600 hover:bg-cyan-500 text-[#0b0f1a] font-black py-4 rounded-xl transition uppercase">
-                    ORDER VIA WHATSAPP
+                    PESAN HUSI WHATSAPP
                 </button>
             </form>
         </div>
@@ -187,7 +187,7 @@
             const productName = select.options[select.selectedIndex].text;
             
             const price = parseFloat(select.value);
-            const delivery = 2.00; // ONGKIR $2.00
+            const delivery = 0.00; // ONGKIR $0.00
             const total = price + delivery;
 
             if(!name || !address) return alert("Please fill all fields!");
@@ -195,11 +195,11 @@
             const msg = `*ZIU STORE ORDER*%0A` +
                         `-----------------------%0A` +
                         `*Customer:* ${name}%0A` +
-                        `*Product:* ${productName}%0A` +
-                        `*Address:* ${address}%0A` +
+                        `*Produtu:* ${productName}%0A` +
+                        `*Fatin:* ${fatin}%0A` +
                         `-----------------------%0A` +
-                        `*Price:* $${price.toFixed(2)}%0A` +
-                        `*Shipping:* $${delivery.toFixed(2)}%0A` +
+                        `*Pressu:* $${price.toFixed(2)}%0A` +
+                        `*Onkir:* $${delivery.toFixed(2)}%0A` +
                         `*TOTAL:* $${total.toFixed(2)}%0A%0A` +
                         `Please process my order!`;
 
