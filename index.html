@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIU STORE | Premium Gaming Baucau</title>
+    <title>ZIU STORE Baucau</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -23,7 +23,7 @@
         <div class="bg-slate-900 p-8 md:p-12 text-white flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-center md:text-left">
                 <h1 class="font-cyber text-4xl italic text-cyan-400">ZIUSTORE</h1>
-                <p class="text-slate-400 tracking-[3px] font-bold text-xs uppercase mt-2">Professional Gaming Gear & Electronics</p>
+                <p class="text-slate-400 tracking-[3px] font-bold text-xs uppercase mt-2">LABLE HANOIN BARAK ATU SOSA SASAN IHA AMI NIA STORE/FATIN</p>
                 <div class="flex items-center gap-2 mt-4 justify-center md:justify-start">
                     <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
                     <span class="text-xs font-bold text-emerald-400 uppercase">Store is Online</span>
@@ -39,7 +39,7 @@
         <div class="grid grid-cols-3 bg-slate-50 border-b text-center py-4">
             <div class="border-r"><p class="text-xs font-bold text-slate-600">ORIGINAL</p></div>
             <div class="border-r"><p class="text-xs font-bold text-slate-600">ANTAR LALAIS</p></div>
-            <div><p class="text-xs font-bold text-slate-600">TRUSTED</p></div>
+            <div><p class="text-xs font-bold text-slate-600">FREE SARUN TANGAN</p></div>
         </div>
 
         <div class="p-6 md:p-10">
@@ -50,7 +50,7 @@
                 <div class="produk-item p-4 flex items-center gap-4">
                     <img src="https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" class="img-box border">
                     <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase">Hyper X Cloud III</h4>
+                        <h4 class="text-sm font-black text-slate-800 uppercase">Gaming Heandset Hyper X Cloud III</h4>
                         <p class="text-cyan-600 font-bold text-lg">$110.00</p>
                     </div>
                     <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
@@ -205,19 +205,18 @@
                 <div class="bg-cyan-50 rounded-3xl p-8 border border-cyan-100">
                     <label class="text-xs font-black text-cyan-700 uppercase mb-3 block">Hili Fatin Antar:</label>
                     <select id="ongkir" onchange="updateTotal()" class="w-full p-4 rounded-xl font-bold text-sm outline-none border-none shadow-sm">
-                        <option value="0.50">BAUCAU VILA LARAN ($0.50)</option>
-                        <option value="1.50">BAUCAU / VENILALE ($1.50)</option>
-                        <option value="3.50">BAUCAU / LOSPALOS ($3.50)</option>
-                        <option value="10.00">BAUCAU / VIQUEQUE ($10.00)</option>
+                        <option value="0.00">BAUCAU VILA LARAN ($FREE)</option>
+                        <option value="2.50">BAUCAU / VENILALE ($2.50)</option>
+                        <option value="3.50">BAUCAU / LAGA ($3.50)</option>
                     </select>
                 </div>
             </div>
 
             <div class="max-w-2xl mx-auto space-y-4">
-                <input type="text" id="nama" placeholder="NARAN COMPLETO (Nama Lengkap)" class="w-full p-5 rounded-2xl border-2 border-slate-100 font-bold text-sm outline-none focus:border-cyan-500 uppercase">
+                <input type="text" id="nama" placeholder="NARAN COMPLETU (Nama Lengkap)" class="w-full p-5 rounded-2xl border-2 border-slate-100 font-bold text-sm outline-none focus:border-cyan-500 uppercase">
                 
                 <div class="bg-rose-50 border border-rose-100 p-6 rounded-2xl text-center">
-                    <p class="text-[10px] font-black text-rose-500 uppercase mb-3">Upload Foto Eleitoral / BI (Wajib)</p>
+                    <p class="text-[10px] font-black text-rose-500 uppercase mb-3">Upload Foto Eleitoral / BI (INAN-AMAN MOS DIAK)</p>
                     <input type="file" id="foto" class="text-xs text-slate-500 w-full">
                 </div>
 
@@ -259,7 +258,7 @@
                 }
             });
 
-            if(!nama || list === "" || !file) return alert("Favor Hatama Naran, Hili Sasan, no Foto ELEITORAL/BI!");
+            if(!nama || list === "" || !file) return alert("Favor Hatama Naran, Hili Sasan, no Hatama Foto ELEITORAL/BI!");
 
             let total = document.getElementById('totalDisplay').innerText;
             let msg = `*ORDER ZIUSTORE - BAUCAU*%0A` +
@@ -271,7 +270,7 @@
                       `-----------------------%0A` +
                       `💰 *TOTAL: ${total}*%0A` +
                       `-----------------------%0A` +
-                      `_Bukti transfer mosan._`;
+                      `_Bukti Screensot transfer mosan._`;
             
             window.open(`https://wa.me/67073350229?text=${msg}`);
         }
