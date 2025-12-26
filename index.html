@@ -3,275 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIU STORE | Premium Gaming Baucau</title>
+    <title>ZIUSTORE | Shopee Style</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Rajdhani', sans-serif; background-color: #f1f5f9; }
-        .font-cyber { font-family: 'Orbitron', sans-serif; }
-        .card-utama { background: white; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1); }
-        .produk-item { border: 1px solid #edf2f7; border-radius: 1.5rem; transition: 0.3s; background: #fff; }
-        .produk-item:hover { border-color: #22d3ee; transform: translateY(-2px); shadow: 0 10px 15px rgba(0,0,0,0.05); }
-        .img-box { width: 80px; height: 80px; object-fit: cover; border-radius: 1rem; flex-shrink: 0; background: #f8fafc; }
-        .btn-beli { background: linear-gradient(135deg, #0891b2 0%, #2563eb 100%); color: white; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+        }
+        .shopee-orange { background-color: #ee4d2d; }
+        .shopee-text { color: #ee4d2d; }
+        .product-card {
+            background: white;
+            transition: transform 0.2s;
+            border-radius: 4px;
+        }
+        .product-card:active {
+            transform: scale(0.98);
+        }
+        /* Style input number para moos */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .sticky-bottom {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 448px; /* Ukuran mobile */
+            background: white;
+            border-top: 1px solid #ddd;
+            z-index: 100;
+        }
     </style>
 </head>
-<body class="bg-slate-100 p-4 md:p-10 flex justify-center">
+<body class="flex justify-center">
 
-    <div class="max-w-5xl w-full card-utama overflow-hidden">
+    <div class="w-full max-w-md bg-gray-50 min-h-screen pb-40">
         
-        <div class="bg-slate-900 p-8 md:p-12 text-white flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-center md:text-left">
-                <h1 class="font-cyber text-4xl italic text-cyan-400">ZIUSTORE</h1>
-                <p class="text-slate-400 tracking-[3px] font-bold text-xs uppercase mt-2">Professional Gaming Gear & Electronics</p>
-                <div class="flex items-center gap-2 mt-4 justify-center md:justify-start">
-                    <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
-                    <span class="text-xs font-bold text-emerald-400 uppercase">Store is Online</span>
+        <header class="shopee-orange p-4 sticky top-0 z-50 shadow-md">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" 
+                         class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <div>
+                        <h1 class="text-white font-black italic text-xl tracking-tighter">ZIUSTORE</h1>
+                        <div class="flex items-center gap-1">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <p class="text-[10px] text-white/80 font-bold uppercase tracking-widest">Online Agora</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-white text-xl">
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </div>
             </div>
-            <div class="text-center">
-                <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-24 h-24 rounded-3xl border-4 border-cyan-500/30 object-cover mx-auto">
-                <p class="text-yellow-400 mt-2">★★★★★</p>
-                <p class="text-[10px] text-slate-500 uppercase font-black">Baucau - Timor Leste</p>
-            </div>
-        </div>
+        </header>
 
-        <div class="grid grid-cols-3 bg-slate-50 border-b text-center py-4">
-            <div class="border-r"><p class="text-xs font-bold text-slate-600">ORIGINAL</p></div>
-            <div class="border-r"><p class="text-xs font-bold text-slate-600">ANTAR LALAIS</p></div>
-            <div><p class="text-xs font-bold text-slate-600">TRUSTED</p></div>
-        </div>
-
-        <div class="p-6 md:p-10">
-            <h2 class="font-cyber text-sm mb-8 text-slate-800 border-l-4 border-cyan-500 pl-4 uppercase tracking-widest">Katalog Sasan (11 Items)</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase">Hyper X Cloud III</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$110.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q1', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q1" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="110">
-                        <button onclick="changeQty('q1', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
+        <div class="p-4">
+            <div class="bg-gradient-to-r from-orange-500 to-red-500 rounded-xl p-4 text-white flex justify-between items-center shadow-lg">
+                <div>
+                    <p class="text-[10px] font-bold uppercase opacity-80">Esklusivu ba Ita</p>
+                    <h2 class="text-lg font-black uppercase tracking-tight">Free Delivery Baucaun!</h2>
                 </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase">Ugreen Charger 1M</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$35.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q2', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q2" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="35">
-                        <button onclick="changeQty('q2', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase">Sarung Jempol King</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$5.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q3', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q3" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="5">
-                        <button onclick="changeQty('q3', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/k2wMSj5k/kabel-extension-lightening-braided-kabel.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase leading-tight">Lightning Braided</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$15.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q4', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q4" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="15">
-                        <button onclick="changeQty('q4', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase leading-tight">Headset AKZ 6 Pro</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$15.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q5', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q5" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="15">
-                        <button onclick="changeQty('q5', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/bT53nsg/funcooler-al19.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase leading-tight">Funcooler AL19</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$15.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q6', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q6" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="15">
-                        <button onclick="changeQty('q6', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/Ndgc73wq/splitter-lightening-kaizer.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase leading-tight">Splitter Kaizer</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$15.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q7', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q7" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="15">
-                        <button onclick="changeQty('q7', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/C5YLyLF8/kipas-AF001-dark-blue.webp" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase leading-tight">Kipas Acome AF001</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$15.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q8', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q8" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="15">
-                        <button onclick="changeQty('q8', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/N693FZGW/kabel-hdmi-ke-type-c-px.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase leading-tight">HDMI 3in1 PX</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$15.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q9', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q9" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="15">
-                        <button onclick="changeQty('q9', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/27L9fBnC/VIDEO-CAPTURE-HDMI-MEREK-PX.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase leading-tight">Video Capture PX</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$15.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q10', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q10" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="15">
-                        <button onclick="changeQty('q10', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-                <div class="produk-item p-4 flex items-center gap-4">
-                    <img src="https://i.ibb.co/mr31wJVZ/hyper-X-cloud-earbuds-gaming.jpg" class="img-box border">
-                    <div class="flex-1">
-                        <h4 class="text-sm font-black text-slate-800 uppercase leading-tight">HyperX Earbuds</h4>
-                        <p class="text-cyan-600 font-bold text-lg">$15.00</p>
-                    </div>
-                    <div class="flex flex-col items-center bg-slate-100 rounded-2xl p-1">
-                        <button onclick="changeQty('q11', 1)" class="w-8 h-8 font-bold text-cyan-600">+</button>
-                        <input type="number" id="q11" value="0" min="0" onchange="updateTotal()" class="w-10 bg-transparent text-center font-bold text-sm outline-none" data-price="15">
-                        <button onclick="changeQty('q11', -1)" class="w-8 h-8 font-bold text-slate-400">-</button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-slate-900 rounded-3xl p-8 text-white">
-                    <p class="text-[10px] text-cyan-400 font-black tracking-widest uppercase mb-2">Total Payment</p>
-                    <p id="totalDisplay" class="text-5xl font-black text-white">$0.00</p>
-                    <div class="mt-6 pt-6 border-t border-white/10 flex justify-between items-center">
-                        <span class="text-xs text-slate-400">Mosan Transfer:</span>
-                        <span class="text-sm font-bold text-cyan-400">+670 75962133</span>
-                    </div>
-                </div>
-
-                <div class="bg-cyan-50 rounded-3xl p-8 border border-cyan-100">
-                    <label class="text-xs font-black text-cyan-700 uppercase mb-3 block">Hili Fatin Antar:</label>
-                    <select id="ongkir" onchange="updateTotal()" class="w-full p-4 rounded-xl font-bold text-sm outline-none border-none shadow-sm">
-                        <option value="0.50">BAUCAU VILA LARAN ($0.50)</option>
-                        <option value="1.50">BAUCAU / VENILALE ($1.50)</option>
-                        <option value="3.50">BAUCAU / LOSPALOS ($3.50)</option>
-                        <option value="10.00">BAUCAU / VIQUEQUE ($10.00)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="max-w-2xl mx-auto space-y-4">
-                <input type="text" id="nama" placeholder="NARAN COMPLETO (Nama Lengkap)" class="w-full p-5 rounded-2xl border-2 border-slate-100 font-bold text-sm outline-none focus:border-cyan-500 uppercase">
-                
-                <div class="bg-rose-50 border border-rose-100 p-6 rounded-2xl text-center">
-                    <p class="text-[10px] font-black text-rose-500 uppercase mb-3">Upload Foto Eleitoral / BI (Wajib)</p>
-                    <input type="file" id="foto" class="text-xs text-slate-500 w-full">
-                </div>
-
-                <button onclick="kirimWA()" class="w-full py-6 rounded-2xl btn-beli font-black text-sm uppercase tracking-widest shadow-xl active:scale-95 transition-all">
-                    Hanehan Tama WhatsApp
-                </button>
+                <i class="fa-solid fa-truck-fast text-4xl opacity-30"></i>
             </div>
         </div>
 
-        <div class="bg-slate-50 p-8 text-center border-t">
-            <p class="text-[10px] text-slate-400 font-bold tracking-widest uppercase">© 2025 ZIUSTORE - Trusted Baucau Gaming Seller</p>
+        <div class="px-4 py-2 flex items-center justify-between">
+            <h3 class="font-bold text-gray-700 uppercase text-xs tracking-wider">Koleksaun Gaming Gear</h3>
+            <span class="text-[10px] text-orange-600 font-bold uppercase">Hili hotu</span>
         </div>
+
+        <div class="grid grid-cols-2 gap-2 px-4">
+            
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
+                <img src="https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" class="w-full h-32 object-contain mb-2">
+                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Hyper X Cloud III Gaming Headset</h3>
+                <p class="shopee-text font-bold text-lg mt-1">$110.00</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
+                    <button onclick="changeQty('q1', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q1" value="0" min="0" data-price="110" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
+                    <button onclick="changeQty('q1', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
+                <img src="https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" class="w-full h-32 object-contain mb-2">
+                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Ugreen Charger 20W + Cable</h3>
+                <p class="shopee-text font-bold text-lg mt-1">$35.00</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
+                    <button onclick="changeQty('q2', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q2" value="0" min="0" data-price="35" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
+                    <button onclick="changeQty('q2', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
+                <img src="https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" class="w-full h-32 object-contain mb-2">
+                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Sarung Jempol Gaming King</h3>
+                <p class="shopee-text font-bold text-lg mt-1">$5.00</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
+                    <button onclick="changeQty('q3', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q3" value="0" min="0" data-price="5" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
+                    <button onclick="changeQty('q3', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
+                <img src="https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" class="w-full h-32 object-contain mb-2">
+                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Headset AKZ 6 Pro Bass</h3>
+                <p class="shopee-text font-bold text-lg mt-1">$15.00</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
+                    <button onclick="changeQty('q4', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q4" value="0" min="0" data-price="15" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
+                    <button onclick="changeQty('q4', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-4 space-y-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <p class="text-[10px] font-black text-gray-400 uppercase mb-3">Opsi Entrega</p>
+                <select id="ongkir" onchange="updateTotal()" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none cursor-pointer">
+                    <option value="0.00">BAUCAU VILA (FREE DELIVERY)</option>
+                    <option value="2.50">VENILALE (+$2.50)</option>
+                    <option value="3.50">LAGA (+$3.50)</option>
+                    <option value="5.00">DILI (VIA BUS +$5.00)</option>
+                </select>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <p class="text-[10px] font-black text-gray-400 uppercase mb-3">Informasaun Kliente</p>
+                <input type="text" id="nama" placeholder="Naran Kompletu" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none mb-3">
+                <input type="number" id="hp" placeholder="Nu. Telemovel" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none">
+            </div>
+        </div>
+
+        <div class="text-center py-10 opacity-30">
+            <p class="text-[10px] font-bold">ZIUSTORE INDO-TIMOR LESTE © 2025</p>
+        </div>
+
+        <div class="sticky-bottom flex items-center">
+            <div class="flex-1 px-4 py-2">
+                <p class="text-[10px] text-gray-500 font-bold uppercase">Total Pagamentu</p>
+                <p id="totalDisplay" class="text-xl font-black shopee-text">$0.00</p>
+            </div>
+            <button onclick="kirimWA()" class="shopee-orange text-white px-8 py-5 font-black uppercase text-sm tracking-tighter active:bg-red-700 transition-colors">
+                Selu Agora
+            </button>
+        </div>
+
     </div>
 
     <script>
         function changeQty(id, n) {
             let el = document.getElementById(id);
             let val = parseInt(el.value) + n;
-            if(val >= 0) { el.value = val; updateTotal(); }
+            if(val >= 0) { 
+                el.value = val; 
+                updateTotal(); 
+            }
         }
 
         function updateTotal() {
             let sum = 0;
             document.querySelectorAll('input[type="number"]').forEach(i => {
-                sum += (parseInt(i.value) * parseFloat(i.getAttribute('data-price')));
+                if(i.id !== 'hp') { // Jangan hitung nomor HP sebagai harga
+                    sum += (parseInt(i.value) * parseFloat(i.getAttribute('data-price')));
+                }
             });
-            let total = sum > 0 ? sum + parseFloat(document.getElementById('ongkir').value) : 0;
+            let shipping = parseFloat(document.getElementById('ongkir').value);
+            let total = sum > 0 ? sum + shipping : 0;
             document.getElementById('totalDisplay').innerText = `$${total.toFixed(2)}`;
         }
 
         function kirimWA() {
             let nama = document.getElementById('nama').value;
-            let file = document.getElementById('foto').files[0];
+            let hp = document.getElementById('hp').value;
             let list = "";
+            
             document.querySelectorAll('input[type="number"]').forEach(i => {
-                if(parseInt(i.value) > 0) {
-                    let name = i.parentElement.parentElement.querySelector('h4').innerText;
+                if(i.id !== 'hp' && parseInt(i.value) > 0) {
+                    let name = i.parentElement.parentElement.querySelector('h3').innerText;
                     list += `📦 ${name} (${i.value}x)%0A`;
                 }
             });
 
-            if(!nama || list === "" || !file) return alert("Favor Hatama Naran, Hili Sasan, no Foto ELEITORAL/BI!");
+            if(!nama || !hp) return alert("⚠️ Favor Prense Naran no Nu. HP!");
+            if(list === "") return alert("⚠️ Hili sasaan ida uluk Bos!");
 
             let total = document.getElementById('totalDisplay').innerText;
-            let msg = `*ORDER ZIUSTORE - BAUCAU*%0A` +
-                      `-----------------------%0A` +
-                      `👤 NARAN: ${nama.toUpperCase()}%0A` +
-                      `📍 FATIN: ${document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text}%0A` +
-                      `-----------------------%0A` +
-                      `*ITEM:*%0A${list}` +
-                      `-----------------------%0A` +
-                      `💰 *TOTAL: ${total}*%0A` +
-                      `-----------------------%0A` +
-                      `_Bukti transfer mosan._`;
+            let shipping = document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text;
+
+            let msg = `*ZIUSTORE - PEDIDU FOUN*%0A` +
+                      `━━━━━━━━━━━━━━━━━━━━%0A` +
+                      `👤 *Kliente:* ${nama.toUpperCase()}%0A` +
+                      `📱 *WhatsApp:* ${hp}%0A` +
+                      `📍 *Entrega:* ${shipping}%0A` +
+                      `━━━━━━━━━━━━━━━━━━━━%0A` +
+                      `*SASAN SOSA:*%0A${list}` +
+                      `━━━━━━━━━━━━━━━━━━━━%0A` +
+                      `💰 *TOTAL PAGU:* ${total}%0A` +
+                      `━━━━━━━━━━━━━━━━━━━━%0A` +
+                      `_Favor manda foto ida ne'e ba Admin_`;
             
             window.open(`https://wa.me/67073350229?text=${msg}`);
         }
