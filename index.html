@@ -1,237 +1,218 @@
 <!DOCTYPE html>
-<html lang="tet">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIUSTORE | Web Payment System</title>
+    <title>ZIUSTORE | Shopee Style</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --shopee-orange: #ee4d2d; --shopee-bg: #f5f5f5; }
-        body { font-family: 'Roboto', sans-serif; background-color: var(--shopee-bg); color: #333; overflow-x: hidden; }
-        
-        .shopee-header { background: linear-gradient(-180deg, #f53d2d, #f63); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .product-card { background: white; border-radius: 4px; overflow: hidden; transition: 0.2s; border: 1px solid rgba(0,0,0,0.05); }
-        
-        /* Payment Modal */
-        #payment-modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px;
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
         }
-        #payment-modal.active { display: flex; }
-        
-        .receipt-card {
-            background: white; width: 100%; max-width: 400px; border-radius: 12px;
-            overflow: hidden; animation: slideUp 0.3s ease-out;
+        .shopee-orange { background-color: #ee4d2d; }
+        .shopee-text { color: #ee4d2d; }
+        .product-card {
+            background: white;
+            transition: transform 0.2s;
+            border-radius: 4px;
         }
-
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        #cart-panel {
-            position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%;
-            background: white; z-index: 200; transition: 0.4s; box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+        .product-card:active {
+            transform: scale(0.98);
         }
-        #cart-panel.active { right: 0; }
-        
-        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: none; }
-        .overlay.active { display: block; }
-        
-        .category-tab { cursor: pointer; padding: 12px; flex: 1; text-align: center; font-size: 11px; border-bottom: 3px solid transparent; }
-        .category-tab.active { color: var(--shopee-orange); border-bottom-color: var(--shopee-orange); }
-        .hidden-section { display: none; }
+        /* Style input number para moos */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .sticky-bottom {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 448px; /* Ukuran mobile */
+            background: white;
+            border-top: 1px solid #ddd;
+            z-index: 100;
+        }
     </style>
 </head>
-<body class="pb-32">
+<body class="flex justify-center">
 
-    <header class="shopee-header p-4 sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto flex items-center justify-between text-white">
-            <div class="flex items-center gap-3">
-                <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-10 h-10 rounded-full border-2 border-white">
-                <h1 class="font-bold text-xl italic uppercase">ZIUSTORE</h1>
-            </div>
-            <i class="fa-solid fa-circle-user text-2xl"></i>
-        </div>
-    </header>
-
-    <nav class="bg-white border-b sticky top-[72px] z-40">
-        <div class="max-w-5xl mx-auto flex">
-            <div onclick="switchSection('store-gaming')" id="tab-gaming" class="category-tab active font-bold">GAMING LOJA</div>
-            <div onclick="switchSection('store-security')" id="tab-security" class="category-tab font-bold">SEGURANSA</div>
-        </div>
-    </nav>
-
-    <main class="max-w-5xl mx-auto p-4">
+    <div class="w-full max-w-md bg-gray-50 min-h-screen pb-40">
         
-        <div id="store-gaming" class="section-container grid grid-cols-2 md:grid-cols-5 gap-2">
-            </div>
-
-        <div id="store-security" class="section-container hidden-section">
-            <div class="bg-white p-6 rounded shadow-sm text-center">
-                <i class="fa-solid fa-shield-check text-4xl text-green-500 mb-2"></i>
-                <h3 class="font-bold">Web Payment Secure</h3>
-                <p class="text-xs text-gray-400">Sistema selu iha web ne'e protejidu 100%.</p>
-            </div>
-        </div>
-
-        <div class="mt-6 max-w-xl mx-auto bg-white p-4 rounded shadow-sm">
-            <h3 class="text-xs font-bold text-orange-600 mb-4 uppercase">Informasaun Entrega</h3>
-            <input type="text" id="nama" placeholder="Naran Kompletu" class="w-full border p-3 rounded text-sm mb-3 outline-none focus:border-orange-500">
-            <select id="ongkir" onchange="renderCart()" class="w-full border p-3 rounded text-sm outline-none bg-white">
-                <option value="0">BAUCAU VILA (FREE)</option>
-                <option value="2.5">VENILALE (+$2.50)</option>
-                <option value="3.5">LAGA (+$3.50)</option>
-            </select>
-        </div>
-    </main>
-
-    <div id="payment-modal">
-        <div class="receipt-card">
-            <div class="p-4 bg-orange-600 text-white text-center">
-                <i class="fa-solid fa-circle-check text-4xl mb-2"></i>
-                <h2 class="font-bold uppercase tracking-widest">Pedidu Suzesu!</h2>
-                <p class="text-[10px] opacity-80">ID: ZIU-<span id="order-id"></span></p>
-            </div>
-            <div class="p-6 space-y-4">
-                <div class="flex justify-between border-b pb-2">
-                    <span class="text-gray-500 text-sm">Cliente:</span>
-                    <span id="res-nama" class="font-bold text-sm"></span>
-                </div>
-                <div id="res-items" class="text-xs text-gray-600 space-y-1">
+        <header class="shopee-orange p-4 sticky top-0 z-50 shadow-md">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" 
+                         class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <div>
+                        <h1 class="text-white font-black italic text-xl tracking-tighter">ZIUSTORE</h1>
+                        <div class="flex items-center gap-1">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <p class="text-[10px] text-white/80 font-bold uppercase tracking-widest">Online Agora</p>
+                        </div>
                     </div>
-                <div class="bg-gray-50 p-3 rounded">
-                    <p class="text-[10px] font-bold text-gray-400 uppercase">Total ne'ebé tenke selu:</p>
-                    <p id="res-total" class="text-2xl font-black text-orange-600"></p>
                 </div>
-                <div class="text-center space-y-2">
-                    <p class="text-[10px] font-medium text-blue-600">FAVOR SELU VIA BNU: 9283-XXXX-XX</p>
-                    <button onclick="closePayment()" class="w-full bg-slate-800 text-white py-3 rounded font-bold text-xs uppercase">Ok, Ha'u Selu Agora</button>
-                    <p class="text-[9px] text-gray-400 italic">*Screenshot struk ne'e hodi ba levantamentu sasan.</p>
+                <div class="text-white text-xl">
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </div>
             </div>
-        </div>
-    </div>
+        </header>
 
-    <div class="fixed bottom-0 left-0 right-0 bg-white p-3 border-t flex justify-between items-center shadow-lg z-40">
-        <div class="relative" onclick="toggleCart()">
-            <i class="fa-solid fa-cart-shopping text-orange-600 text-2xl"></i>
-            <span id="cart-count" class="absolute -top-2 -right-2 bg-orange-600 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+        <div class="p-4">
+            <div class="bg-gradient-to-r from-orange-500 to-red-500 rounded-xl p-4 text-white flex justify-between items-center shadow-lg">
+                <div>
+                    <p class="text-[10px] font-bold uppercase opacity-80">Esklusivu ba Ita</p>
+                    <h2 class="text-lg font-black uppercase tracking-tight">Free Delivery Baucaun!</h2>
+                </div>
+                <i class="fa-solid fa-truck-fast text-4xl opacity-30"></i>
+            </div>
         </div>
-        <div class="text-right flex-1 px-4">
-            <p class="text-[9px] font-bold text-gray-400 uppercase">Total</p>
-            <p id="bottom-total" class="text-lg font-bold text-orange-600">$0.00</p>
-        </div>
-        <button onclick="processWebPayment()" class="bg-orange-600 text-white px-8 py-3 rounded font-bold uppercase text-xs">Selu Agora</button>
-    </div>
 
-    <div class="overlay" onclick="toggleCart()"></div>
-    <div id="cart-panel" class="flex flex-col">
-        <div class="p-4 bg-orange-600 text-white flex justify-between items-center">
-            <h3 class="font-bold uppercase text-sm">Ita-nia Keranjang</h3>
-            <button onclick="toggleCart()"><i class="fa-solid fa-xmark text-xl"></i></button>
+        <div class="px-4 py-2 flex items-center justify-between">
+            <h3 class="font-bold text-gray-700 uppercase text-xs tracking-wider">Koleksaun Gaming Gear</h3>
+            <span class="text-[10px] text-orange-600 font-bold uppercase">Hili hotu</span>
         </div>
-        <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+
+        <div class="grid grid-cols-2 gap-2 px-4">
+            
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
+                <img src="https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" class="w-full h-32 object-contain mb-2">
+                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Hyper X Cloud III Gaming Headset</h3>
+                <p class="shopee-text font-bold text-lg mt-1">$110.00</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
+                    <button onclick="changeQty('q1', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q1" value="0" min="0" data-price="110" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
+                    <button onclick="changeQty('q1', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
+                <img src="https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" class="w-full h-32 object-contain mb-2">
+                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Ugreen Charger 20W + Cable</h3>
+                <p class="shopee-text font-bold text-lg mt-1">$35.00</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
+                    <button onclick="changeQty('q2', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q2" value="0" min="0" data-price="35" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
+                    <button onclick="changeQty('q2', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
+                <img src="https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" class="w-full h-32 object-contain mb-2">
+                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Sarung Jempol Gaming King</h3>
+                <p class="shopee-text font-bold text-lg mt-1">$5.00</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
+                    <button onclick="changeQty('q3', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q3" value="0" min="0" data-price="5" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
+                    <button onclick="changeQty('q3', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
+                <img src="https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" class="w-full h-32 object-contain mb-2">
+                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Headset AKZ 6 Pro Bass</h3>
+                <p class="shopee-text font-bold text-lg mt-1">$15.00</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
+                    <button onclick="changeQty('q4', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q4" value="0" min="0" data-price="15" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
+                    <button onclick="changeQty('q4', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-4 space-y-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <p class="text-[10px] font-black text-gray-400 uppercase mb-3">Opsi Entrega</p>
+                <select id="ongkir" onchange="updateTotal()" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none cursor-pointer">
+                    <option value="0.00">BAUCAU VILA (FREE DELIVERY)</option>
+                    <option value="2.50">VENILALE (+$2.50)</option>
+                    <option value="3.50">LAGA (+$3.50)</option>
+                    <option value="5.00">DILI (VIA BUS +$5.00)</option>
+                </select>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <p class="text-[10px] font-black text-gray-400 uppercase mb-3">Informasaun Kliente</p>
+                <input type="text" id="nama" placeholder="Naran Kompletu" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none mb-3">
+                <input type="number" id="hp" placeholder="Nu. Telemovel" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none">
+            </div>
+        </div>
+
+        <div class="text-center py-10 opacity-30">
+            <p class="text-[10px] font-bold">ZIUSTORE INDO-TIMOR LESTE © 2025</p>
+        </div>
+
+        <div class="sticky-bottom flex items-center">
+            <div class="flex-1 px-4 py-2">
+                <p class="text-[10px] text-gray-500 font-bold uppercase">Total Pagamentu</p>
+                <p id="totalDisplay" class="text-xl font-black shopee-text">$0.00</p>
+            </div>
+            <button onclick="kirimWA()" class="shopee-orange text-white px-8 py-5 font-black uppercase text-sm tracking-tighter active:bg-red-700 transition-colors">
+                Selu Agora
+            </button>
+        </div>
+
     </div>
 
     <script>
-        const products = [
-            { id: 1, name: "Hyper X Cloud III", price: 110, img: "https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" },
-            { id: 2, name: "Ugreen Charger 1M", price: 35, img: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
-            { id: 3, name: "Sarung Jempol King", price: 5, img: "https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" },
-            { id: 4, name: "Lightning Braided", price: 15, img: "https://i.ibb.co/k2wMSj5k/kabel-extension-lightening-braided-kabel.jpg" },
-            { id: 5, name: "Headset AKZ 6 Pro", price: 15, img: "https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" },
-            { id: 6, name: "Funcooler AL19", price: 15, img: "https://i.ibb.co/bT53nsg/funcooler-al19.jpg" },
-            { id: 7, name: "Splitter Kaizer", price: 15, img: "https://i.ibb.co/Ndgc73wq/splitter-lightening-kaizer.jpg" },
-            { id: 8, name: "Kipas Acome AF001", price: 15, img: "https://i.ibb.co/C5YLyLF8/kipas-AF001-dark-blue.webp" },
-            { id: 9, name: "HDMI 3in1 PX", price: 15, img: "https://i.ibb.co/N693FZGW/kabel-hdmi-ke-type-c-px.jpg" },
-            { id: 10, name: "Video Capture PX", price: 15, img: "https://i.ibb.co/27L9fBnC/VIDEO-CAPTURE-HDMI-MEREK-PX.jpg" },
-            { id: 11, name: "HyperX Earbuds", price: 15, img: "https://i.ibb.co/mr31wJVZ/hyper-X-cloud-earbuds-gaming.jpg" }
-        ];
+        function changeQty(id, n) {
+            let el = document.getElementById(id);
+            let val = parseInt(el.value) + n;
+            if(val >= 0) { 
+                el.value = val; 
+                updateTotal(); 
+            }
+        }
 
-        let cart = {};
-
-        function initStore() {
-            const container = document.getElementById('store-gaming');
-            products.forEach(p => {
-                container.innerHTML += `
-                    <div class="product-card p-2 flex flex-col justify-between shadow-sm">
-                        <img src="${p.img}" class="w-full h-24 object-contain mb-2">
-                        <h3 class="text-[10px] font-medium h-8 line-clamp-2">${p.name}</h3>
-                        <p class="text-orange-600 font-bold text-sm">$${p.price.toFixed(2)}</p>
-                        <button onclick="addToCart(${p.id})" class="mt-2 w-full bg-orange-600 text-white text-[9px] py-2 font-bold rounded uppercase">Sosa</button>
-                    </div>`;
+        function updateTotal() {
+            let sum = 0;
+            document.querySelectorAll('input[type="number"]').forEach(i => {
+                if(i.id !== 'hp') { // Jangan hitung nomor HP sebagai harga
+                    sum += (parseInt(i.value) * parseFloat(i.getAttribute('data-price')));
+                }
             });
+            let shipping = parseFloat(document.getElementById('ongkir').value);
+            let total = sum > 0 ? sum + shipping : 0;
+            document.getElementById('totalDisplay').innerText = `$${total.toFixed(2)}`;
         }
 
-        function addToCart(id) {
-            cart[id] = (cart[id] || 0) + 1;
-            renderCart();
-            const msg = new SpeechSynthesisUtterance("Sasan tama keranjang");
-            msg.lang = 'pt-PT'; window.speechSynthesis.speak(msg);
-        }
-
-        function renderCart() {
-            const container = document.getElementById('cart-items');
-            container.innerHTML = "";
-            let total = 0; let count = 0;
-            Object.keys(cart).forEach(id => {
-                const p = products.find(x => x.id == id);
-                total += p.price * cart[id]; count += cart[id];
-                container.innerHTML += `
-                    <div class="flex items-center gap-3 border-b pb-2">
-                        <img src="${p.img}" class="w-10 h-10 object-contain">
-                        <div class="flex-1 text-[11px] font-bold">${p.name}</div>
-                        <div class="text-orange-600 font-bold text-xs">$${(p.price * cart[id]).toFixed(2)}</div>
-                    </div>`;
-            });
-            const ongkir = parseFloat(document.getElementById('ongkir').value);
-            const finalTotal = total > 0 ? total + ongkir : 0;
-            document.getElementById('cart-count').innerText = count;
-            document.getElementById('bottom-total').innerText = `$${finalTotal.toFixed(2)}`;
-        }
-
-        function processWebPayment() {
-            const nama = document.getElementById('nama').value;
-            if(!nama || Object.keys(cart).length === 0) return alert("Favor prense naran no sosa sasan!");
-
-            // Generate Receipt
-            document.getElementById('order-id').innerText = Math.floor(Math.random() * 90000) + 10000;
-            document.getElementById('res-nama').innerText = nama.toUpperCase();
-            document.getElementById('res-total').innerText = document.getElementById('bottom-total').innerText;
+        function kirimWA() {
+            let nama = document.getElementById('nama').value;
+            let hp = document.getElementById('hp').value;
+            let list = "";
             
-            const listContainer = document.getElementById('res-items');
-            listContainer.innerHTML = "";
-            Object.keys(cart).forEach(id => {
-                const p = products.find(x => x.id == id);
-                listContainer.innerHTML += `<div>• ${p.name} (${cart[id]}x)</div>`;
+            document.querySelectorAll('input[type="number"]').forEach(i => {
+                if(i.id !== 'hp' && parseInt(i.value) > 0) {
+                    let name = i.parentElement.parentElement.querySelector('h3').innerText;
+                    list += `📦 ${name} (${i.value}x)%0A`;
+                }
             });
 
-            document.getElementById('payment-modal').classList.add('active');
+            if(!nama || !hp) return alert("⚠️ Favor Prense Naran no Nu. HP!");
+            if(list === "") return alert("⚠️ Hili sasaan ida uluk Bos!");
+
+            let total = document.getElementById('totalDisplay').innerText;
+            let shipping = document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text;
+
+            let msg = `*ZIUSTORE - PEDIDU FOUN*%0A` +
+                      `━━━━━━━━━━━━━━━━━━━━%0A` +
+                      `👤 *Kliente:* ${nama.toUpperCase()}%0A` +
+                      `📱 *WhatsApp:* ${hp}%0A` +
+                      `📍 *Entrega:* ${shipping}%0A` +
+                      `━━━━━━━━━━━━━━━━━━━━%0A` +
+                      `*SASAN SOSA:*%0A${list}` +
+                      `━━━━━━━━━━━━━━━━━━━━%0A` +
+                      `💰 *TOTAL PAGU:* ${total}%0A` +
+                      `━━━━━━━━━━━━━━━━━━━━%0A` +
+                      `_Favor manda foto ida ne'e ba Admin_`;
             
-            const msg = new SpeechSynthesisUtterance("Pedidu suzesu. Favor selu tuir total ne'ebé iha web.");
-            msg.lang = 'pt-PT'; window.speechSynthesis.speak(msg);
+            window.open(`https://wa.me/67073350229?text=${msg}`);
         }
-
-        function closePayment() {
-            document.getElementById('payment-modal').classList.remove('active');
-            cart = {};
-            renderCart();
-            document.getElementById('nama').value = "";
-        }
-
-        function toggleCart() {
-            document.getElementById('cart-panel').classList.toggle('active');
-            document.querySelector('.overlay').classList.toggle('active');
-        }
-
-        function switchSection(id) {
-            document.querySelectorAll('.section-container').forEach(s => s.classList.add('hidden-section'));
-            document.getElementById(id).classList.remove('hidden-section');
-            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-            document.getElementById('tab-' + id.split('-')[1]).classList.add('active');
-        }
-
-        initStore();
     </script>
 </body>
 </html>
