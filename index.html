@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIUSTORE | Shopee Style</title>
+    <title>ZIUSTORE | All 11 Items</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -11,7 +11,8 @@
         body { font-family: 'Roboto', sans-serif; background-color: #f5f5f5; }
         .shopee-orange { background-color: #ee4d2d; }
         .shopee-text { color: #ee4d2d; }
-        .product-card { background: white; border-radius: 4px; overflow: hidden; }
+        .product-card { background: white; border-radius: 4px; overflow: hidden; transition: 0.2s; }
+        .product-card:active { transform: scale(0.97); }
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .sticky-bottom { position: fixed; bottom: 0; width: 100%; max-width: 448px; background: white; border-top: 1px solid #eee; z-index: 100; }
     </style>
@@ -26,29 +27,24 @@
                     <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
                     <div>
                         <h1 class="text-white font-black italic text-xl tracking-tighter">ZIUSTORE</h1>
-                        <p class="text-[10px] text-white/80 font-bold uppercase tracking-widest">Premium Gaming Gear</p>
+                        <p class="text-[10px] text-white/80 font-bold uppercase">Official Gaming Store</p>
                     </div>
                 </div>
                 <div class="text-white text-xl"><i class="fa-solid fa-cart-shopping"></i></div>
             </div>
         </header>
 
-        <div class="p-3">
-            <div class="bg-gradient-to-r from-orange-600 to-red-500 rounded-lg p-4 text-white flex justify-between items-center">
-                <div>
-                    <h2 class="text-lg font-black uppercase italic">Promo Natal & Tinan Foun</h2>
-                    <p class="text-[10px] opacity-90">Sosa agora, entrega gratuitu iha Baucau Vila!</p>
-                </div>
-            </div>
+        <div class="p-4 bg-white mb-2 shadow-sm">
+            <h2 class="font-bold text-gray-800 text-sm uppercase italic"><i class="fa-solid fa-fire text-orange-500 mr-2"></i> Hot Items (11)</h2>
         </div>
 
-        <div class="grid grid-cols-2 gap-2 px-3" id="product-grid">
+        <div class="grid grid-cols-2 gap-2 px-2" id="product-grid">
             </div>
 
-        <div class="p-3 space-y-3">
+        <div class="p-3 mt-4 space-y-3">
             <div class="bg-white p-4 rounded-lg shadow-sm">
-                <label class="text-[10px] font-bold text-gray-400 uppercase">Fatin Entrega:</label>
-                <select id="ongkir" onchange="updateTotal()" class="w-full mt-1 p-3 bg-gray-50 border rounded text-xs font-bold outline-none">
+                <p class="text-[10px] font-black text-gray-400 uppercase mb-2">Hili Fatin Entrega:</p>
+                <select id="ongkir" onchange="updateTotal()" class="w-full p-3 bg-gray-50 border rounded-lg text-xs font-bold outline-none cursor-pointer">
                     <option value="0.00">BAUCAU VILA (FREE)</option>
                     <option value="2.50">VENILALE (+$2.50)</option>
                     <option value="3.50">LAGA (+$3.50)</option>
@@ -57,22 +53,18 @@
             </div>
 
             <div class="bg-white p-4 rounded-lg shadow-sm">
-                <label class="text-[10px] font-bold text-gray-400 uppercase">Dados Kliente:</label>
-                <input type="text" id="nama" placeholder="Naran Kompletu" class="w-full mt-1 p-3 bg-gray-50 border rounded text-xs font-bold outline-none mb-2">
-                <input type="number" id="hp" placeholder="Nu. WhatsApp" class="w-full p-3 bg-gray-50 border rounded text-xs font-bold outline-none">
+                <p class="text-[10px] font-black text-gray-400 uppercase mb-2">Prense Ita nia Dados:</p>
+                <input type="text" id="nama" placeholder="Naran Kompletu" class="w-full p-3 bg-gray-50 border rounded-lg text-xs font-bold outline-none mb-2 focus:border-orange-500">
+                <input type="number" id="hp" placeholder="Nu. WhatsApp" class="w-full p-3 bg-gray-50 border rounded-lg text-xs font-bold outline-none focus:border-orange-500">
             </div>
         </div>
 
-        <div class="text-center py-10 opacity-20">
-            <p class="text-[9px] font-bold tracking-widest">© 2025 ZIUSTORE TIMOR-LESTE</p>
-        </div>
-
-        <div class="sticky-bottom flex items-center shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+        <div class="sticky-bottom flex items-center shadow-2xl">
             <div class="flex-1 px-5 py-3">
-                <p class="text-[9px] text-gray-400 font-bold uppercase">Total Pagamentu</p>
+                <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Total</p>
                 <p id="totalDisplay" class="text-xl font-black shopee-text">$0.00</p>
             </div>
-            <button onclick="kirimWA()" class="shopee-orange text-white px-10 py-6 font-black uppercase text-sm tracking-tight active:opacity-80">
+            <button onclick="kirimWA()" class="shopee-orange text-white px-10 py-6 font-black uppercase text-sm active:bg-orange-700">
                 Selu Agora
             </button>
         </div>
@@ -80,6 +72,7 @@
     </div>
 
     <script>
+        // LISTA 11 ITEM KOMPLETU
         const products = [
             { id: 1, name: "Hyper X Cloud III", price: 110, img: "https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" },
             { id: 2, name: "Ugreen Charger 20W", price: 35, img: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
@@ -94,16 +87,17 @@
             { id: 11, name: "HyperX Earbuds", price: 15, img: "https://i.ibb.co/mr31wJVZ/hyper-X-cloud-earbuds-gaming.jpg" }
         ];
 
+        // RENDER SASAN BA SCREEN
         const grid = document.getElementById('product-grid');
         grid.innerHTML = products.map(p => `
             <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col justify-between">
                 <img src="${p.img}" class="w-full h-28 object-contain mb-2">
-                <h3 class="text-[10px] text-gray-500 font-medium h-8 overflow-hidden uppercase leading-tight">${p.name}</h3>
-                <p class="shopee-text font-bold text-base mt-1">$${p.price.toFixed(2)}</p>
-                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded p-1">
-                    <button onclick="changeQty('q${p.id}', -1)" class="w-7 h-7 flex items-center justify-center font-bold text-gray-300">-</button>
-                    <input type="number" id="q${p.id}" value="0" min="0" data-price="${p.price}" onchange="updateTotal()" class="bg-transparent w-8 text-center text-xs font-bold outline-none">
-                    <button onclick="changeQty('q${p.id}', 1)" class="w-7 h-7 flex items-center justify-center font-bold shopee-text">+</button>
+                <h3 class="text-[10px] text-gray-500 font-bold h-8 overflow-hidden uppercase leading-tight">${p.name}</h3>
+                <p class="shopee-text font-black text-base mt-1">$${p.price.toFixed(2)}</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded p-1 border border-gray-100">
+                    <button onclick="changeQty('q${p.id}', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
+                    <input type="number" id="q${p.id}" value="0" min="0" data-price="${p.price}" onchange="updateTotal()" class="bg-transparent w-8 text-center text-xs font-black outline-none">
+                    <button onclick="changeQty('q${p.id}', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
                 </div>
             </div>
         `).join('');
@@ -116,8 +110,9 @@
 
         function updateTotal() {
             let sum = 0;
-            document.querySelectorAll('input[type="number"]').forEach(i => {
-                if(i.id !== 'hp') sum += (parseInt(i.value) * parseFloat(i.getAttribute('data-price')));
+            products.forEach(p => {
+                let qty = parseInt(document.getElementById('q' + p.id).value) || 0;
+                sum += (qty * p.price);
             });
             let shipping = parseFloat(document.getElementById('ongkir').value);
             let total = sum > 0 ? sum + shipping : 0;
@@ -125,36 +120,45 @@
         }
 
         function kirimWA() {
-            let nama = document.getElementById('nama').value;
-            let hp = document.getElementById('hp').value;
+            let nama = document.getElementById('nama').value.trim();
+            let hp = document.getElementById('hp').value.trim();
             let list = "";
+            let totalSasan = 0;
             
             products.forEach(p => {
-                let qty = document.getElementById('q' + p.id).value;
-                if(parseInt(qty) > 0) {
-                    list += `✅ ${p.name} (${qty}x)%0A`;
+                let qty = parseInt(document.getElementById('q' + p.id).value) || 0;
+                if(qty > 0) {
+                    list += `✅ *${p.name}* (${qty}x) - $${(p.price * qty).toFixed(2)}%0A`;
+                    totalSasan += (p.price * qty);
                 }
             });
 
-            if(!nama || !hp) return alert("Favor Prena Naran no Nu. WhatsApp!");
-            if(list === "") return alert("Hili sasaan ida uluk!");
+            if(!nama || !hp) {
+                alert("⚠️ Favor Prense Naran no Nu. WhatsApp!");
+                return;
+            }
+            if(totalSasan === 0) {
+                alert("⚠️ Hili sasaan ida uluk Bos!");
+                return;
+            }
 
-            let total = document.getElementById('totalDisplay').innerText;
-            let shipping = document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text;
+            let shippingVal = parseFloat(document.getElementById('ongkir').value);
+            let shippingText = document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text;
+            let finalTotal = totalSasan + shippingVal;
 
             let msg = `*ZIUSTORE - PEDIDU FOUN*%0A` +
                       `━━━━━━━━━━━━━━━━━━━━%0A` +
                       `👤 *Naran:* ${nama.toUpperCase()}%0A` +
                       `📱 *WA:* ${hp}%0A` +
-                      `📍 *Fatin:* ${shipping}%0A` +
+                      `📍 *Entrega:* ${shippingText}%0A` +
                       `━━━━━━━━━━━━━━━━━━━━%0A` +
                       `*SASAN SOSA:*%0A${list}` +
                       `━━━━━━━━━━━━━━━━━━━━%0A` +
-                      `💰 *TOTAL PAGU: ${total}*%0A` +
+                      `💰 *TOTAL PAGU: $${finalTotal.toFixed(2)}*%0A` +
                       `━━━━━━━━━━━━━━━━━━━━%0A` +
-                      `_Transfer osan ba numeru mosan 75962133 depois scrensot tiha bukti ne'e hodi send mai watshapp ida ne'e hodi ami bele antar ba ita bot nia fatin_`;
+                      `_Favor manda mensajen ne'e ba Admin_`;
             
-            window.open(`https://wa.me/67073350229?text=${msg}`);
+            window.open(`https://wa.me/67073350229?text=${msg}`, '_blank');
         }
     </script>
 </body>
