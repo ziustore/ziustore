@@ -8,151 +8,71 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f5f5;
-        }
+        body { font-family: 'Roboto', sans-serif; background-color: #f5f5f5; }
         .shopee-orange { background-color: #ee4d2d; }
         .shopee-text { color: #ee4d2d; }
-        .product-card {
-            background: white;
-            transition: transform 0.2s;
-            border-radius: 4px;
-        }
-        .product-card:active {
-            transform: scale(0.98);
-        }
-        /* Style input number para moos */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .sticky-bottom {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 448px; /* Ukuran mobile */
-            background: white;
-            border-top: 1px solid #ddd;
-            z-index: 100;
-        }
+        .product-card { background: white; border-radius: 4px; overflow: hidden; }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .sticky-bottom { position: fixed; bottom: 0; width: 100%; max-width: 448px; background: white; border-top: 1px solid #eee; z-index: 100; }
     </style>
 </head>
 <body class="flex justify-center">
 
-    <div class="w-full max-w-md bg-gray-50 min-h-screen pb-40">
+    <div class="w-full max-w-md bg-gray-50 min-h-screen pb-32">
         
         <header class="shopee-orange p-4 sticky top-0 z-50 shadow-md">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" 
-                         class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
                     <div>
                         <h1 class="text-white font-black italic text-xl tracking-tighter">ZIUSTORE</h1>
-                        <div class="flex items-center gap-1">
-                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                            <p class="text-[10px] text-white/80 font-bold uppercase tracking-widest">Online Agora</p>
-                        </div>
+                        <p class="text-[10px] text-white/80 font-bold uppercase tracking-widest">Premium Gaming Gear</p>
                     </div>
                 </div>
-                <div class="text-white text-xl">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
+                <div class="text-white text-xl"><i class="fa-solid fa-cart-shopping"></i></div>
             </div>
         </header>
 
-        <div class="p-4">
-            <div class="bg-gradient-to-r from-orange-500 to-red-500 rounded-xl p-4 text-white flex justify-between items-center shadow-lg">
+        <div class="p-3">
+            <div class="bg-gradient-to-r from-orange-600 to-red-500 rounded-lg p-4 text-white flex justify-between items-center">
                 <div>
-                    <p class="text-[10px] font-bold uppercase opacity-80">Esklusivu ba Ita</p>
-                    <h2 class="text-lg font-black uppercase tracking-tight">Free Delivery Baucaun!</h2>
+                    <h2 class="text-lg font-black uppercase italic">Promo Natal & Tinan Foun</h2>
+                    <p class="text-[10px] opacity-90">Sosa agora, entrega gratuitu iha Baucau Vila!</p>
                 </div>
-                <i class="fa-solid fa-truck-fast text-4xl opacity-30"></i>
             </div>
         </div>
 
-        <div class="px-4 py-2 flex items-center justify-between">
-            <h3 class="font-bold text-gray-700 uppercase text-xs tracking-wider">Koleksaun Gaming Gear</h3>
-            <span class="text-[10px] text-orange-600 font-bold uppercase">Hili hotu</span>
-        </div>
-
-        <div class="grid grid-cols-2 gap-2 px-4">
-            
-            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
-                <img src="https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" class="w-full h-32 object-contain mb-2">
-                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Hyper X Cloud III Gaming Headset</h3>
-                <p class="shopee-text font-bold text-lg mt-1">$110.00</p>
-                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
-                    <button onclick="changeQty('q1', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
-                    <input type="number" id="q1" value="0" min="0" data-price="110" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
-                    <button onclick="changeQty('q1', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
-                </div>
+        <div class="grid grid-cols-2 gap-2 px-3" id="product-grid">
             </div>
 
-            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
-                <img src="https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" class="w-full h-32 object-contain mb-2">
-                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Ugreen Charger 20W + Cable</h3>
-                <p class="shopee-text font-bold text-lg mt-1">$35.00</p>
-                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
-                    <button onclick="changeQty('q2', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
-                    <input type="number" id="q2" value="0" min="0" data-price="35" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
-                    <button onclick="changeQty('q2', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
-                </div>
-            </div>
-
-            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
-                <img src="https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" class="w-full h-32 object-contain mb-2">
-                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Sarung Jempol Gaming King</h3>
-                <p class="shopee-text font-bold text-lg mt-1">$5.00</p>
-                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
-                    <button onclick="changeQty('q3', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
-                    <input type="number" id="q3" value="0" min="0" data-price="5" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
-                    <button onclick="changeQty('q3', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
-                </div>
-            </div>
-
-            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col">
-                <img src="https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" class="w-full h-32 object-contain mb-2">
-                <h3 class="text-[11px] text-gray-600 h-8 overflow-hidden font-medium">Headset AKZ 6 Pro Bass</h3>
-                <p class="shopee-text font-bold text-lg mt-1">$15.00</p>
-                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded-lg p-1">
-                    <button onclick="changeQty('q4', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400">-</button>
-                    <input type="number" id="q4" value="0" min="0" data-price="15" onchange="updateTotal()" class="bg-transparent w-8 text-center text-sm font-bold outline-none">
-                    <button onclick="changeQty('q4', 1)" class="w-8 h-8 flex items-center justify-center font-bold shopee-text">+</button>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="p-4 space-y-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                <p class="text-[10px] font-black text-gray-400 uppercase mb-3">Opsi Entrega</p>
-                <select id="ongkir" onchange="updateTotal()" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none cursor-pointer">
-                    <option value="0.00">BAUCAU VILA (FREE DELIVERY)</option>
+        <div class="p-3 space-y-3">
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <label class="text-[10px] font-bold text-gray-400 uppercase">Fatin Entrega:</label>
+                <select id="ongkir" onchange="updateTotal()" class="w-full mt-1 p-3 bg-gray-50 border rounded text-xs font-bold outline-none">
+                    <option value="0.00">BAUCAU VILA (FREE)</option>
                     <option value="2.50">VENILALE (+$2.50)</option>
                     <option value="3.50">LAGA (+$3.50)</option>
-                    <option value="5.00">DILI (VIA BUS +$5.00)</option>
+                    <option value="5.00">DILI (+$5.00)</option>
                 </select>
             </div>
 
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                <p class="text-[10px] font-black text-gray-400 uppercase mb-3">Informasaun Kliente</p>
-                <input type="text" id="nama" placeholder="Naran Kompletu" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none mb-3">
-                <input type="number" id="hp" placeholder="Nu. Telemovel" class="w-full p-3 bg-gray-50 border border-gray-100 rounded-lg text-xs font-bold outline-none">
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+                <label class="text-[10px] font-bold text-gray-400 uppercase">Dados Kliente:</label>
+                <input type="text" id="nama" placeholder="Naran Kompletu" class="w-full mt-1 p-3 bg-gray-50 border rounded text-xs font-bold outline-none mb-2">
+                <input type="number" id="hp" placeholder="Nu. WhatsApp" class="w-full p-3 bg-gray-50 border rounded text-xs font-bold outline-none">
             </div>
         </div>
 
-        <div class="text-center py-10 opacity-30">
-            <p class="text-[10px] font-bold">ZIUSTORE INDO-TIMOR LESTE © 2025</p>
+        <div class="text-center py-10 opacity-20">
+            <p class="text-[9px] font-bold tracking-widest">© 2025 ZIUSTORE TIMOR-LESTE</p>
         </div>
 
-        <div class="sticky-bottom flex items-center">
-            <div class="flex-1 px-4 py-2">
-                <p class="text-[10px] text-gray-500 font-bold uppercase">Total Pagamentu</p>
+        <div class="sticky-bottom flex items-center shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+            <div class="flex-1 px-5 py-3">
+                <p class="text-[9px] text-gray-400 font-bold uppercase">Total Pagamentu</p>
                 <p id="totalDisplay" class="text-xl font-black shopee-text">$0.00</p>
             </div>
-            <button onclick="kirimWA()" class="shopee-orange text-white px-8 py-5 font-black uppercase text-sm tracking-tighter active:bg-red-700 transition-colors">
+            <button onclick="kirimWA()" class="shopee-orange text-white px-10 py-6 font-black uppercase text-sm tracking-tight active:opacity-80">
                 Selu Agora
             </button>
         </div>
@@ -160,21 +80,44 @@
     </div>
 
     <script>
+        const products = [
+            { id: 1, name: "Hyper X Cloud III", price: 110, img: "https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" },
+            { id: 2, name: "Ugreen Charger 20W", price: 35, img: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
+            { id: 3, name: "Sarung Jempol King", price: 5, img: "https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" },
+            { id: 4, name: "Lightning Braided", price: 15, img: "https://i.ibb.co/k2wMSj5k/kabel-extension-lightening-braided-kabel.jpg" },
+            { id: 5, name: "Headset AKZ 6 Pro", price: 15, img: "https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" },
+            { id: 6, name: "Funcooler AL19", price: 15, img: "https://i.ibb.co/bT53nsg/funcooler-al19.jpg" },
+            { id: 7, name: "Splitter Kaizer", price: 15, img: "https://i.ibb.co/Ndgc73wq/splitter-lightening-kaizer.jpg" },
+            { id: 8, name: "Kipas Acome AF001", price: 15, img: "https://i.ibb.co/C5YLyLF8/kipas-AF001-dark-blue.webp" },
+            { id: 9, name: "HDMI 3in1 PX", price: 15, img: "https://i.ibb.co/N693FZGW/kabel-hdmi-ke-type-c-px.jpg" },
+            { id: 10, name: "Video Capture PX", price: 15, img: "https://i.ibb.co/27L9fBnC/VIDEO-CAPTURE-HDMI-MEREK-PX.jpg" },
+            { id: 11, name: "HyperX Earbuds", price: 15, img: "https://i.ibb.co/mr31wJVZ/hyper-X-cloud-earbuds-gaming.jpg" }
+        ];
+
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = products.map(p => `
+            <div class="product-card shadow-sm border border-gray-100 p-3 flex flex-col justify-between">
+                <img src="${p.img}" class="w-full h-28 object-contain mb-2">
+                <h3 class="text-[10px] text-gray-500 font-medium h-8 overflow-hidden uppercase leading-tight">${p.name}</h3>
+                <p class="shopee-text font-bold text-base mt-1">$${p.price.toFixed(2)}</p>
+                <div class="flex items-center justify-between mt-3 bg-gray-50 rounded p-1">
+                    <button onclick="changeQty('q${p.id}', -1)" class="w-7 h-7 flex items-center justify-center font-bold text-gray-300">-</button>
+                    <input type="number" id="q${p.id}" value="0" min="0" data-price="${p.price}" onchange="updateTotal()" class="bg-transparent w-8 text-center text-xs font-bold outline-none">
+                    <button onclick="changeQty('q${p.id}', 1)" class="w-7 h-7 flex items-center justify-center font-bold shopee-text">+</button>
+                </div>
+            </div>
+        `).join('');
+
         function changeQty(id, n) {
             let el = document.getElementById(id);
             let val = parseInt(el.value) + n;
-            if(val >= 0) { 
-                el.value = val; 
-                updateTotal(); 
-            }
+            if(val >= 0) { el.value = val; updateTotal(); }
         }
 
         function updateTotal() {
             let sum = 0;
             document.querySelectorAll('input[type="number"]').forEach(i => {
-                if(i.id !== 'hp') { // Jangan hitung nomor HP sebagai harga
-                    sum += (parseInt(i.value) * parseFloat(i.getAttribute('data-price')));
-                }
+                if(i.id !== 'hp') sum += (parseInt(i.value) * parseFloat(i.getAttribute('data-price')));
             });
             let shipping = parseFloat(document.getElementById('ongkir').value);
             let total = sum > 0 ? sum + shipping : 0;
@@ -186,30 +129,30 @@
             let hp = document.getElementById('hp').value;
             let list = "";
             
-            document.querySelectorAll('input[type="number"]').forEach(i => {
-                if(i.id !== 'hp' && parseInt(i.value) > 0) {
-                    let name = i.parentElement.parentElement.querySelector('h3').innerText;
-                    list += `📦 ${name} (${i.value}x)%0A`;
+            products.forEach(p => {
+                let qty = document.getElementById('q' + p.id).value;
+                if(parseInt(qty) > 0) {
+                    list += `✅ ${p.name} (${qty}x)%0A`;
                 }
             });
 
-            if(!nama || !hp) return alert("⚠️ Favor Prense Naran no Nu. HP!");
-            if(list === "") return alert("⚠️ Hili sasaan ida uluk Bos!");
+            if(!nama || !hp) return alert("Favor Prena Naran no Nu. WhatsApp!");
+            if(list === "") return alert("Hili sasaan ida uluk!");
 
             let total = document.getElementById('totalDisplay').innerText;
             let shipping = document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text;
 
             let msg = `*ZIUSTORE - PEDIDU FOUN*%0A` +
                       `━━━━━━━━━━━━━━━━━━━━%0A` +
-                      `👤 *Kliente:* ${nama.toUpperCase()}%0A` +
-                      `📱 *WhatsApp:* ${hp}%0A` +
-                      `📍 *Entrega:* ${shipping}%0A` +
+                      `👤 *Naran:* ${nama.toUpperCase()}%0A` +
+                      `📱 *WA:* ${hp}%0A` +
+                      `📍 *Fatin:* ${shipping}%0A` +
                       `━━━━━━━━━━━━━━━━━━━━%0A` +
                       `*SASAN SOSA:*%0A${list}` +
                       `━━━━━━━━━━━━━━━━━━━━%0A` +
-                      `💰 *TOTAL PAGU:* ${total}%0A` +
+                      `💰 *TOTAL PAGU: ${total}*%0A` +
                       `━━━━━━━━━━━━━━━━━━━━%0A` +
-                      `_Favor manda foto ida ne'e ba Admin_`;
+                      `_Transfer osan ba numeru mosan 75962133 depois scrensot tiha bukti ne'e hodi send mai watshapp ida ne'e hodi ami bele antar ba ita bot nia fatin_`;
             
             window.open(`https://wa.me/67073350229?text=${msg}`);
         }
