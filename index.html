@@ -2,48 +2,42 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZIUSTORE | Simple Fix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIUSTORE | Official</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
-        .product-card { background: white; border-radius: 12px; padding: 10px; border: 1px solid #e5e7eb; transition: 0.2s; }
-        .product-card:active { transform: scale(0.96); }
-        .btn-wa { background: #25d366; color: white; width: 100%; padding: 18px; border-radius: 12px; font-weight: 900; font-size: 16px; margin-top: 15px; }
+        body { font-family: sans-serif; background: #f0f2f5; -webkit-tap-highlight-color: transparent; }
+        .product-card { background: white; border-radius: 12px; padding: 10px; border: 1px solid #eee; }
+        .btn-checkout { background: #25d366; color: white; width: 100%; padding: 15px; border-radius: 12px; font-weight: 900; }
     </style>
 </head>
 <body class="p-4 flex justify-center">
 
     <div class="max-w-md w-full">
-        <div class="flex items-center gap-4 mb-6 bg-white p-4 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-3 mb-6 bg-white p-4 rounded-2xl shadow-sm">
             <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-12 h-12 rounded-full border-2 border-orange-500">
-            <div>
-                <h1 class="text-xl font-black text-orange-600 italic">ZIUSTORE</h1>
-                <p class="text-[10px] font-bold text-gray-400 uppercase">Gaming Store Timor-Leste</p>
-            </div>
+            <h1 class="text-xl font-black text-orange-600 italic">ZIUSTORE</h1>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 mb-6" id="displayProduk"></div>
+        <div class="grid grid-cols-2 gap-3 mb-6" id="productGrid"></div>
 
-        <div class="bg-white p-5 rounded-2xl shadow-lg border-t-4 border-orange-500">
-            <label class="text-[10px] font-black text-gray-400 uppercase mb-1 block">Nama Pelanggan</label>
-            <input type="text" id="namaInput" placeholder="Masukkan nama..." class="w-full p-3 bg-gray-50 border rounded-xl mb-4 outline-none focus:border-orange-500 font-bold">
+        <div class="bg-white p-5 rounded-2xl shadow-lg">
+            <input type="text" id="custName" placeholder="Naran Kompletu..." class="w-full p-3 border rounded-xl mb-4 font-bold outline-none focus:border-green-500">
             
-            <div class="flex justify-between items-center bg-orange-50 p-4 rounded-xl mb-2">
-                <span class="text-xs font-bold text-gray-500">TOTAL</span>
-                <span id="totalDisplay" class="text-2xl font-black text-orange-600">$0.00</span>
+            <div class="flex justify-between items-center mb-6 px-2">
+                <span class="text-xs font-bold text-gray-400">TOTAL:</span>
+                <span id="totalDisplay" class="text-2xl font-black text-green-600">$0.00</span>
             </div>
 
-            <button onclick="kirimSekarang()" class="btn-wa shadow-xl flex items-center justify-center gap-2">
-                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.548 0 10.064-4.516 10.066-10.066.002-5.548-4.517-10.067-10.065-10.067-5.545 0-10.06 4.516-10.063 10.064-.001 1.936.5 3.738 1.565 5.43l-.953 3.477 3.571-.93z"></path></svg>
-                BELI VIA WHATSAPP
+            <button onclick="orderSekarang()" class="btn-checkout shadow-lg active:scale-95 transition-all">
+                ORDER VIA WHATSAPP
             </button>
+            <p class="text-[10px] text-center text-gray-400 mt-3 uppercase font-bold italic">Klik OK & Paste/Tempel di chat nanti</p>
         </div>
     </div>
 
     <script>
-        const sasan = [
+        const items = [
             { id: 1, n: "Hyper X Cloud III", h: 110, f: "https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" },
             { id: 2, n: "Ugreen Charger 20W", h: 35, f: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
             { id: 3, n: "Sarung Jempol", h: 5, f: "https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" },
@@ -58,48 +52,47 @@
         ];
 
         function render() {
-            let res = '';
-            sasan.forEach(p => {
-                res += `
-                <div class="product-card flex flex-col items-center">
+            let h = '';
+            items.forEach(p => {
+                h += `<div class="product-card flex flex-col items-center shadow-sm">
                     <img src="${p.f}" class="w-16 h-16 object-contain mb-2">
-                    <p class="text-[9px] font-black text-center h-8 overflow-hidden uppercase text-gray-500 mb-1">${p.n}</p>
-                    <p class="text-orange-600 font-black text-sm mb-2">$${p.h}</p>
-                    <input type="number" id="qty${p.id}" value="0" min="0" onchange="total()" class="w-full border p-1 text-center font-bold rounded-lg text-xs bg-gray-50 outline-none">
+                    <p class="text-[9px] font-bold text-center h-8 overflow-hidden uppercase">${p.n}</p>
+                    <p class="text-green-600 font-black text-sm">$${p.h}</p>
+                    <input type="number" id="q${p.id}" value="0" min="0" onchange="calc()" class="w-full border rounded-md p-1 text-center font-bold text-xs">
                 </div>`;
             });
-            document.getElementById('displayProduk').innerHTML = res;
+            document.getElementById('productGrid').innerHTML = h;
         }
 
-        function total() {
+        function calc() {
             let t = 0;
-            sasan.forEach(p => {
-                let qty = document.getElementById('qty'+p.id).value || 0;
-                t += (p.h * qty);
-            });
+            items.forEach(p => { t += (p.h * (document.getElementById('q'+p.id).value || 0)); });
             document.getElementById('totalDisplay').innerText = "$" + t.toFixed(2);
         }
 
-        function kirimSekarang() {
-            let nama = document.getElementById('namaInput').value;
-            let totalVal = document.getElementById('totalDisplay').innerText;
-            
-            if(!nama || totalVal === "$0.00") {
-                alert("Harap masukkan nama dan pilih barang!");
-                return;
-            }
+        function orderSekarang() {
+            let nama = document.getElementById('custName').value;
+            let list = ""; let ada = false;
+            items.forEach(p => {
+                let q = document.getElementById('qty'+p.id) ? document.getElementById('qty'+p.id).value : document.getElementById('q'+p.id).value;
+                if(q > 0) { list += `- ${p.n} (${q}x)\n`; ada = true; }
+            });
 
-            // LINK SANGAT PENDEK (ANTI ERROR)
-            // Hanya berisi Nama dan Total Harga
-            let adminWA = "67073350229";
-            let pesan = `Halo Ziustore, saya *${nama.toUpperCase()}*. Saya mau belanja dengan total: *${totalVal}*. Mohon admin bantu cek rinciannya.`;
+            if(!nama || !ada) { alert("Favor hatama Naran no hili Sasan!"); return; }
 
-            let url = "https://api.whatsapp.com/send?phone=" + adminWA + "&text=" + encodeURIComponent(pesan);
-            
-            // Langsung buka WhatsApp
-            window.location.href = url;
+            // DATA YANG AKAN DI COPY
+            let teksCopy = `ORDER ZIUSTORE\nNaran: ${nama}\n\nSasan:\n${list}\nTotal: ${document.getElementById('totalDisplay').innerText}`;
+
+            // PROSES COPY & JUMP
+            navigator.clipboard.writeText(teksCopy).then(() => {
+                alert("Pesanan sudah di COPY secara otomatis. Silakan PASTE/TEMPEL di chat WhatsApp Admin.");
+                // BUKA LINK PROFILE WA BUSINESS BOS
+                window.location.href = "https://wa.me/message/XVGBTU3TRCSZG1";
+            }).catch(() => {
+                // Jika browser jadul/error, langsung buka link saja
+                window.location.href = "https://wa.me/message/XVGBTU3TRCSZG1";
+            });
         }
-
         render();
     </script>
 </body>
