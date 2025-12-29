@@ -2,15 +2,15 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIUSTORE | Simple Order</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZIUSTORE | Simple Fix</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; }
-        .product-card { background: white; border-radius: 12px; padding: 10px; border: 1px solid #ddd; }
-        .btn-order { background: #ee4d2d; color: white; width: 100%; padding: 15px; border-radius: 10px; font-weight: bold; font-size: 16px; margin-top: 15px; }
-        #notaModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; padding: 20px; overflow-y: auto; }
-        .nota-box { background: white; padding: 25px; border-radius: 20px; max-width: 400px; margin: auto; position: relative; border: 2px dashed #ccc; }
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; }
+        .product-card { background: white; border-radius: 12px; padding: 10px; border: 1px solid #e5e7eb; transition: 0.2s; }
+        .product-card:active { transform: scale(0.96); }
+        .btn-wa { background: #25d366; color: white; width: 100%; padding: 18px; border-radius: 12px; font-weight: 900; font-size: 16px; margin-top: 15px; }
     </style>
 </head>
 <body class="p-4 flex justify-center">
@@ -20,56 +20,25 @@
             <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-12 h-12 rounded-full border-2 border-orange-500">
             <div>
                 <h1 class="text-xl font-black text-orange-600 italic">ZIUSTORE</h1>
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Gaming & Mobile Accessories</p>
+                <p class="text-[10px] font-bold text-gray-400 uppercase">Gaming Store Timor-Leste</p>
             </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3 mb-6" id="displayProduk"></div>
 
-        <div class="bg-white p-5 rounded-2xl shadow-md border-t-4 border-orange-500">
-            <label class="text-xs font-black text-gray-400 uppercase">Nama Lengkap</label>
-            <input type="text" id="namaInput" placeholder="Tulis nama anda..." class="w-full p-3 bg-gray-50 border rounded-lg mb-4 outline-none focus:border-orange-500">
+        <div class="bg-white p-5 rounded-2xl shadow-lg border-t-4 border-orange-500">
+            <label class="text-[10px] font-black text-gray-400 uppercase mb-1 block">Nama Pelanggan</label>
+            <input type="text" id="namaInput" placeholder="Masukkan nama..." class="w-full p-3 bg-gray-50 border rounded-xl mb-4 outline-none focus:border-orange-500 font-bold">
             
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-sm font-bold text-gray-500">TOTAL BELANJA</span>
+            <div class="flex justify-between items-center bg-orange-50 p-4 rounded-xl mb-2">
+                <span class="text-xs font-bold text-gray-500">TOTAL</span>
                 <span id="totalDisplay" class="text-2xl font-black text-orange-600">$0.00</span>
             </div>
 
-            <button onclick="buatNota()" class="btn-order active:scale-95 transition-all shadow-lg shadow-orange-200">
-                PROSES PESANAN
+            <button onclick="kirimSekarang()" class="btn-wa shadow-xl flex items-center justify-center gap-2">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.548 0 10.064-4.516 10.066-10.066.002-5.548-4.517-10.067-10.065-10.067-5.545 0-10.06 4.516-10.063 10.064-.001 1.936.5 3.738 1.565 5.43l-.953 3.477 3.571-.93z"></path></svg>
+                BELI VIA WHATSAPP
             </button>
-        </div>
-
-        <p class="text-center text-[10px] text-gray-400 mt-6 font-bold uppercase tracking-widest">© 2025 Ziustore Timor-Leste</p>
-    </div>
-
-    <div id="notaModal">
-        <div class="nota-box shadow-2xl">
-            <div class="text-center border-b-2 border-dotted pb-4 mb-4">
-                <h2 class="text-2xl font-black italic text-orange-600">ZIUSTORE</h2>
-                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Nota Pesanan Digital</p>
-            </div>
-            
-            <div class="text-[12px] font-mono space-y-2 mb-6 text-gray-700">
-                <p>NAMA: <span id="notaNama" class="font-bold"></span></p>
-                <p>TANGGAL: <span id="notaTgl" class="font-bold"></span></p>
-                <hr class="border-dotted">
-                <div id="notaBarang"></div>
-                <hr class="border-dotted">
-                <div class="flex justify-between text-lg font-black mt-2">
-                    <span>TOTAL:</span>
-                    <span id="notaTotal" class="text-orange-600"></span>
-                </div>
-            </div>
-
-            <div class="bg-blue-50 p-4 rounded-xl text-center mb-4">
-                <p class="text-[11px] font-bold text-blue-600 leading-tight">
-                    📸 SCREENSHOT NOTA INI<br>DAN KIRIM KE NOMOR: <br>
-                    <span class="text-lg">73350229</span>
-                </p>
-            </div>
-
-            <button onclick="tutupNota()" class="w-full bg-gray-200 text-gray-600 font-bold py-3 rounded-lg text-sm">TUTUP & EDIT</button>
         </div>
     </div>
 
@@ -92,11 +61,11 @@
             let res = '';
             sasan.forEach(p => {
                 res += `
-                <div class="product-card flex flex-col items-center shadow-sm">
+                <div class="product-card flex flex-col items-center">
                     <img src="${p.f}" class="w-16 h-16 object-contain mb-2">
-                    <p class="text-[9px] font-black text-center h-8 overflow-hidden uppercase leading-none text-gray-600">${p.n}</p>
+                    <p class="text-[9px] font-black text-center h-8 overflow-hidden uppercase text-gray-500 mb-1">${p.n}</p>
                     <p class="text-orange-600 font-black text-sm mb-2">$${p.h}</p>
-                    <input type="number" id="qty${p.id}" value="0" min="0" onchange="total()" class="w-full border p-1 text-center font-bold rounded-lg text-xs bg-gray-50">
+                    <input type="number" id="qty${p.id}" value="0" min="0" onchange="total()" class="w-full border p-1 text-center font-bold rounded-lg text-xs bg-gray-50 outline-none">
                 </div>`;
             });
             document.getElementById('displayProduk').innerHTML = res;
@@ -111,34 +80,24 @@
             document.getElementById('totalDisplay').innerText = "$" + t.toFixed(2);
         }
 
-        function buatNota() {
+        function kirimSekarang() {
             let nama = document.getElementById('namaInput').value;
-            let list = "";
-            let ada = false;
-
-            sasan.forEach(p => {
-                let qty = document.getElementById('qty'+p.id).value;
-                if(qty > 0) {
-                    list += `<div class="flex justify-between"><span>${p.n} (x${qty})</span><span>$${p.h * qty}</span></div>`;
-                    ada = true;
-                }
-            });
-
-            if(!nama || !ada) {
-                alert("Harap masukkan Nama dan pilih minimal 1 barang!");
+            let totalVal = document.getElementById('totalDisplay').innerText;
+            
+            if(!nama || totalVal === "$0.00") {
+                alert("Harap masukkan nama dan pilih barang!");
                 return;
             }
 
-            document.getElementById('notaNama').innerText = nama.toUpperCase();
-            document.getElementById('notaTgl').innerText = new Date().toLocaleString();
-            document.getElementById('notaBarang').innerHTML = list;
-            document.getElementById('notaTotal').innerText = document.getElementById('totalDisplay').innerText;
-            
-            document.getElementById('notaModal').style.display = 'flex';
-        }
+            // LINK SANGAT PENDEK (ANTI ERROR)
+            // Hanya berisi Nama dan Total Harga
+            let adminWA = "67073350229";
+            let pesan = `Halo Ziustore, saya *${nama.toUpperCase()}*. Saya mau belanja dengan total: *${totalVal}*. Mohon admin bantu cek rinciannya.`;
 
-        function tutupNota() {
-            document.getElementById('notaModal').style.display = 'none';
+            let url = "https://api.whatsapp.com/send?phone=" + adminWA + "&text=" + encodeURIComponent(pesan);
+            
+            // Langsung buka WhatsApp
+            window.location.href = url;
         }
 
         render();
