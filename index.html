@@ -2,184 +2,118 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZIUSTORE | Final Fix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIUSTORE SIMPEL</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8f8f8; -webkit-tap-highlight-color: transparent; }
-        .shopee-orange { background-color: #ee4d2d; }
-        .shopee-text { color: #ee4d2d; }
-        .main-container { width: 100%; max-width: 450px; margin: 0 auto; background: white; min-height: 100vh; }
-        .product-card { background: white; border-radius: 12px; border: 1px solid #eee; padding: 8px; }
-        .sticky-bottom { position: fixed; bottom: 0; width: 100%; max-width: 450px; background: white; border-top: 1px solid #ddd; z-index: 1000; }
-        input, select { font-size: 16px !important; }
-        
-        /* Modal Popup */
-        #waModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+        body { font-family: sans-serif; background-color: #f4f4f4; }
+        .product-card { background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn-wa { background-color: #25d366; color: white; font-weight: bold; width: 100%; padding: 15px; border-radius: 10px; margin-top: 10px; display: block; text-align: center; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
     </style>
 </head>
-<body class="flex justify-center">
+<body class="p-4">
 
-    <div class="main-container shadow-2xl pb-40">
-        <header class="shopee-orange p-4 sticky top-0 z-50 flex items-center justify-between shadow-md">
-            <div class="flex items-center gap-2 text-white">
-                <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-10 h-10 rounded-full border-2 border-white">
-                <h1 class="font-black italic text-lg tracking-tighter">ZIUSTORE</h1>
-            </div>
-            <button onclick="loginAdmin()" class="opacity-20 text-white"><i class="fa-solid fa-gear"></i></button>
-        </header>
-
-        <div class="p-3 grid grid-cols-2 gap-2" id="product-grid"></div>
-
-        <div class="p-4 space-y-4">
-            <div class="bg-gray-50 p-4 rounded-xl border">
-                <p class="text-[10px] font-black text-gray-400 uppercase mb-2">Lokasi</p>
-                <select id="ongkir" onchange="updateTotal()" class="w-full p-3 border rounded-lg font-bold text-sm">
-                    <option value="0.00">BAUCAU VILA (FREE)</option>
-                    <option value="2.50">VENILALE (+$2.50)</option>
-                    <option value="3.50">LAGA (+$3.50)</option>
-                    <option value="5.00">DILI (+$5.00)</option>
-                </select>
-            </div>
-            <div class="bg-white p-4 rounded-xl border-2 border-orange-100">
-                <p class="text-[10px] font-black text-orange-600 uppercase mb-2">Data Pengiriman</p>
-                <input type="text" id="custName" placeholder="Nama Lengkap" class="w-full p-3 border rounded-lg mb-2 text-sm font-bold bg-gray-50">
-                <input type="number" id="custPhone" placeholder="Nomor WA (Contoh: 7335...)" class="w-full p-3 border rounded-lg text-sm font-bold bg-gray-50">
-            </div>
-        </div>
-
-        <div class="sticky-bottom flex items-center p-2 shadow-2xl">
-            <div class="flex-1 px-4">
-                <p class="text-[10px] text-gray-400 font-bold uppercase">Total</p>
-                <p id="totalDisplay" class="text-xl font-black shopee-text leading-none">$0.00</p>
-            </div>
-            <button onclick="handleOrder()" class="shopee-orange text-white px-10 py-5 rounded-lg font-black uppercase text-sm shadow-lg active:scale-95 transition-all">
-                BELI SEKARANG
-            </button>
-        </div>
+    <div class="text-center mb-6">
+        <h1 class="text-2xl font-bold text-orange-600">ZIUSTORE</h1>
+        <p class="text-xs text-gray-500">Order Gaming Gear Cepat & Mudah</p>
     </div>
 
-    <div id="waModal">
-        <div class="bg-white w-full max-w-xs rounded-3xl overflow-hidden shadow-2xl">
-            <div class="shopee-orange p-6 text-white text-center">
-                <i class="fa-solid fa-cart-shopping text-4xl mb-2"></i>
-                <h3 class="font-black">KONFIRMASI PESANAN</h3>
-            </div>
-            <div class="p-6 space-y-4">
-                <p class="text-xs text-center text-gray-500 font-medium">Jika tombol "Kirim Otomatis" tidak bisa, gunakan tombol "Salin & Tempel".</p>
-                
-                <button id="btnDirect" class="w-full bg-green-500 text-white font-black py-4 rounded-xl flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-xl"></i> KIRIM OTOMATIS
-                </button>
-
-                <button id="btnCopy" class="w-full bg-blue-500 text-white font-black py-4 rounded-xl flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-copy"></i> SALIN PESANAN
-                </button>
-
-                <button onclick="closeModal()" class="w-full text-gray-400 text-xs font-bold pt-2">KEMBALI</button>
-            </div>
+    <div class="grid grid-cols-2 gap-3" id="produk">
         </div>
+
+    <div class="mt-8 bg-white p-4 rounded-xl shadow-md">
+        <h3 class="font-bold border-b pb-2 mb-4">Data Pesanan</h3>
+        
+        <label class="text-xs font-bold text-gray-400">NAMA LENGKAP</label>
+        <input type="text" id="naran" placeholder="Contoh: Alex">
+
+        <label class="text-xs font-bold text-gray-400 mt-4 block">LOKASI KIRIM</label>
+        <select id="fatin" onchange="hitung()">
+            <option value="0">BAUCAU VILA (FREE)</option>
+            <option value="2.5">VENILALE (+$2.50)</option>
+            <option value="3.5">LAGA (+$3.50)</option>
+            <option value="5">DILI (+$5.00)</option>
+        </select>
+
+        <div class="mt-6 p-4 bg-orange-50 rounded-lg text-center">
+            <p class="text-xs text-gray-500 font-bold uppercase">Total Tagihan</p>
+            <h2 id="totalDisplay" class="text-3xl font-black text-orange-600">$0.00</h2>
+        </div>
+
+        <button onclick="kirimWA()" class="btn-wa mt-4 shadow-lg active:scale-95">
+            HUBUNGI ADMIN (WHATSAPP)
+        </button>
     </div>
 
     <script>
-        const products = [
-            { id: 1, name: "Hyper X Cloud III", price: 110, img: "https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" },
-            { id: 2, name: "Ugreen Charger 20W", price: 35, img: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
-            { id: 3, name: "Sarung Jempol King", price: 5, img: "https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" },
-            { id: 4, name: "Lightning Braided", price: 15, img: "https://i.ibb.co/k2wMSj5k/kabel-extension-lightening-braided-kabel.jpg" },
-            { id: 5, name: "Headset AKZ 6 Pro", price: 15, img: "https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" },
-            { id: 6, name: "Funcooler AL19", price: 15, img: "https://i.ibb.co/bT53nsg/funcooler-al19.jpg" },
-            { id: 7, name: "Splitter Kaizer", price: 15, img: "https://i.ibb.co/Ndgc73wq/splitter-lightening-kaizer.jpg" },
-            { id: 8, name: "Kipas Acome AF001", price: 15, img: "https://i.ibb.co/C5YLyLF8/kipas-AF001-dark-blue.webp" },
-            { id: 9, name: "HDMI 3in1 PX", price: 15, img: "https://i.ibb.co/N693FZGW/kabel-hdmi-ke-type-c-px.jpg" },
-            { id: 10, name: "Video Capture PX", price: 15, img: "https://i.ibb.co/27L9fBnC/VIDEO-CAPTURE-HDMI-MEREK-PX.jpg" },
-            { id: 11, name: "HyperX Earbuds", price: 15, img: "https://i.ibb.co/mr31wJVZ/hyper-X-cloud-earbuds-gaming.jpg" }
+        const daftarSasan = [
+            { id: 1, nama: "Hyper X Cloud III", harga: 110, foto: "https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" },
+            { id: 2, nama: "Ugreen Charger 20W", harga: 35, foto: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
+            { id: 3, nama: "Sarung Jempol", harga: 5, foto: "https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" },
+            { id: 4, nama: "Lightning Braided", harga: 15, foto: "https://i.ibb.co/k2wMSj5k/kabel-extension-lightening-braided-kabel.jpg" },
+            { id: 5, nama: "Headset AKZ 6 Pro", harga: 15, foto: "https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" },
+            { id: 6, nama: "Funcooler AL19", harga: 15, foto: "https://i.ibb.co/bT53nsg/funcooler-al19.jpg" },
+            { id: 7, nama: "Splitter Kaizer", harga: 15, foto: "https://i.ibb.co/Ndgc73wq/splitter-lightening-kaizer.jpg" },
+            { id: 8, nama: "Kipas Acome AF001", harga: 15, foto: "https://i.ibb.co/C5YLyLF8/kipas-AF001-dark-blue.webp" },
+            { id: 9, nama: "HDMI 3in1 PX", harga: 15, foto: "https://i.ibb.co/N693FZGW/kabel-hdmi-ke-type-c-px.jpg" },
+            { id: 10, nama: "Video Capture PX", harga: 15, foto: "https://i.ibb.co/27L9fBnC/VIDEO-CAPTURE-HDMI-MEREK-PX.jpg" },
+            { id: 11, nama: "HyperX Earbuds", harga: 15, foto: "https://i.ibb.co/mr31wJVZ/hyper-X-cloud-earbuds-gaming.jpg" }
         ];
 
-        function renderProducts() {
-            document.getElementById('product-grid').innerHTML = products.map(p => `
-                <div class="product-card flex flex-col justify-between shadow-sm">
-                    <img src="${p.img}" class="w-full h-24 object-contain mb-2">
-                    <h3 class="text-[10px] text-gray-500 font-black uppercase leading-tight h-8 overflow-hidden">${p.name}</h3>
-                    <p class="shopee-text font-black text-lg">$${p.price.toFixed(2)}</p>
-                    <div class="flex items-center justify-between mt-2 bg-gray-50 rounded-lg p-1 border">
-                        <button onclick="changeQty('q${p.id}', -1)" class="w-7 h-7 font-bold text-gray-300">-</button>
-                        <input type="number" id="q${p.id}" value="0" class="bg-transparent w-8 text-center text-xs font-black outline-none" readonly>
-                        <button onclick="changeQty('q${p.id}', 1)" class="w-7 h-7 font-bold shopee-text">+</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function changeQty(id, n) {
-            let el = document.getElementById(id);
-            let val = parseInt(el.value) + n;
-            if(val >= 0) { el.value = val; updateTotal(); }
-        }
-
-        function updateTotal() {
-            let sum = 0;
-            products.forEach(p => {
-                let qty = parseInt(document.getElementById('q' + p.id).value) || 0;
-                sum += (qty * p.price);
+        function tampilkanProduk() {
+            let html = '';
+            daftarSasan.forEach(s => {
+                html += `
+                <div class="product-card">
+                    <img src="${s.foto}" class="w-full h-24 object-contain">
+                    <p class="text-[10px] font-bold mt-2 h-8 overflow-hidden">${s.nama}</p>
+                    <p class="text-orange-600 font-bold">$${s.harga}</p>
+                    <input type="number" id="qty${s.id}" value="0" min="0" onchange="hitung()" class="text-center mt-2 !p-1">
+                </div>`;
             });
-            let ship = parseFloat(document.getElementById('ongkir').value);
-            let total = sum > 0 ? sum + ship : 0;
-            document.getElementById('totalDisplay').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('produk').innerHTML = html;
         }
 
-        function handleOrder() {
-            const name = document.getElementById('custName').value.trim();
-            const phone = document.getElementById('custPhone').value.trim();
-            let items = []; let totalSasan = 0;
+        function hitung() {
+            let subtotal = 0;
+            daftarSasan.forEach(s => {
+                let q = document.getElementById('qty'+s.id).value || 0;
+                subtotal += (s.harga * q);
+            });
+            let ongkir = parseFloat(document.getElementById('fatin').value);
+            let total = subtotal > 0 ? subtotal + ongkir : 0;
+            document.getElementById('totalDisplay').innerText = "$" + total.toFixed(2);
+        }
 
-            products.forEach(p => {
-                let qty = parseInt(document.getElementById('q' + p.id).value) || 0;
-                if(qty > 0) {
-                    items.push(`- ${p.name} (${qty}x)`);
-                    totalSasan += (p.price * qty);
+        function kirimWA() {
+            let nama = document.getElementById('naran').value;
+            let lokasi = document.getElementById('fatin').options[document.getElementById('fatin').selectedIndex].text;
+            let listSasan = "";
+            let adaSasan = false;
+
+            daftarSasan.forEach(s => {
+                let q = document.getElementById('qty'+s.id).value;
+                if(q > 0) {
+                    listSasan += `- ${s.nama} (${q}x)\n`;
+                    adaSasan = true;
                 }
             });
 
-            if(!name || !phone || totalSasan === 0) {
-                alert("Harap isi Nama, No WA, dan pilih barang!");
+            if(!nama || !adaSasan) {
+                alert("Isi nama dan pilih barang dulu ya!");
                 return;
             }
 
-            const totalFinal = document.getElementById('totalDisplay').innerText;
-            const ship = document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text;
-            const adminWA = "67073350229";
+            let total = document.getElementById('totalDisplay').innerText;
+            let pesan = `Halo Ziustore,\n\nNama: ${nama}\nLokasi: ${lokasi}\n\nPesanan:\n${listSasan}\nTotal: ${total}`;
             
-            const rawMsg = `HALO ZIUSTORE\nNama: ${name}\nWA: ${phone}\nLokasi: ${ship}\n\nSasan Sosa:\n${items.join('\n')}\n\nTotal: ${totalFinal}`;
-
-            // TAMPILKAN MODAL
-            document.getElementById('waModal').style.display = 'flex';
-
-            // AKSI 1: KIRIM OTOMATIS
-            document.getElementById('btnDirect').onclick = () => {
-                window.location.href = `https://api.whatsapp.com/send?phone=${adminWA}&text=${encodeURIComponent(rawMsg)}`;
-            };
-
-            // AKSI 2: SALIN (COPY)
-            document.getElementById('btnCopy').onclick = () => {
-                navigator.clipboard.writeText(rawMsg).then(() => {
-                    alert("Pesanan berhasil disalin! Sekarang silakan buka WhatsApp dan tempel (paste) pesanan Anda.");
-                    window.location.href = `https://api.whatsapp.com/send?phone=${adminWA}`;
-                });
-            };
+            // Link paling simpel dan aman untuk semua HP
+            let url = "https://api.whatsapp.com/send?phone=67073350229&text=" + encodeURIComponent(pesan);
+            window.location.href = url;
         }
 
-        function closeModal() { document.getElementById('waModal').style.display = 'none'; }
-        
-        function loginAdmin() {
-            if(prompt("Pass:") === "admin123") {
-                alert("Dashboard Admin dalam pengembangan. Pesanan saat ini langsung masuk ke WhatsApp.");
-            }
-        }
-
-        renderProducts();
+        tampilkanProduk();
     </script>
 </body>
 </html>
