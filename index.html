@@ -3,130 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZIUSTORE | All-Device Compatible</title>
+    <title>ZIUSTORE | Official Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --shopee-red: #ee4d2d; }
-        body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; -webkit-tap-highlight-color: transparent; }
-        .shopee-bg { background-color: var(--shopee-red); }
-        .shopee-text { color: var(--shopee-red); }
-        
-        /* Smooth Scroll & Transitions */
-        html { scroll-behavior: smooth; }
-        .product-card { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #f0f0f0; }
-        .product-card:active { transform: scale(0.96); background-color: #fafafa; }
-        
-        /* Optimization for Mobile Screens */
-        @media (max-width: 380px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
-            .product-name { font-size: 9px !important; }
-        }
-
-        /* Container Limit for Desktop */
-        .main-container { width: 100%; max-width: 500px; margin: 0 auto; background: white; min-height: 100vh; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.1); }
-        
-        .sticky-bottom { position: fixed; bottom: 0; width: 100%; max-width: 500px; background: white; border-top: 1px solid #eee; z-index: 100; padding-bottom: env(safe-area-inset-bottom); }
-        
-        input, select { font-size: 16px !important; } /* Prevents iOS zoom-in on focus */
+        body { font-family: 'Inter', sans-serif; background-color: #f4f4f4; -webkit-tap-highlight-color: transparent; }
+        .shopee-orange { background-color: #ee4d2d; }
+        .shopee-text { color: #ee4d2d; }
+        .product-card { background: white; border-radius: 12px; overflow: hidden; transition: 0.1s; border: 1px solid #eee; }
+        .product-card:active { transform: scale(0.96); background: #fafafa; }
+        .main-container { width: 100%; max-width: 480px; margin: 0 auto; background: white; min-height: 100vh; position: relative; }
+        .sticky-bottom { position: fixed; bottom: 0; width: 100%; max-width: 480px; background: white; border-top: 1px solid #eee; z-index: 100; padding-bottom: env(safe-area-inset-bottom); }
+        input, select { font-size: 16px !important; } /* Fix iOS Zoom */
     </style>
 </head>
-<body class="bg-gray-200">
+<body class="flex justify-center">
 
-    <div class="main-container flex flex-col">
+    <div class="main-container shadow-2xl">
         
-        <header class="shopee-bg p-4 sticky top-0 z-50 shadow-lg">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="relative">
-                        <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-12 h-12 rounded-full border-2 border-white/50 shadow-lg">
-                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
-                    </div>
-                    <div>
-                        <h1 class="text-white font-black italic text-2xl tracking-tighter leading-none">ZIUSTORE</h1>
-                        <p class="text-[10px] text-white/70 font-bold uppercase tracking-widest mt-1 italic">Gaming Gear Expert</p>
-                    </div>
+        <header class="shopee-orange p-5 sticky top-0 z-50 shadow-md flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-11 h-11 rounded-full border-2 border-white/50">
+                <div>
+                    <h1 class="text-white font-black italic text-xl leading-none tracking-tighter">ZIUSTORE</h1>
+                    <p class="text-[9px] text-white/80 font-bold uppercase tracking-widest mt-1">Direct Gaming Order</p>
                 </div>
-                <button onclick="loginAdmin()" class="bg-black/10 text-white p-2.5 rounded-full backdrop-blur-sm active:bg-black/30 transition-all">
-                    <i class="fa-solid fa-gear text-lg"></i>
-                </button>
             </div>
+            <button onclick="loginAdmin()" class="text-white/30 text-xl"><i class="fa-solid fa-shield-cat"></i></button>
         </header>
 
-        <main class="flex-grow pb-40">
-            <div class="p-4">
-                <div class="bg-black rounded-2xl p-5 text-white flex justify-between items-center overflow-hidden relative shadow-xl">
-                    <div class="relative z-10">
-                        <span class="bg-orange-500 text-[9px] px-2 py-0.5 rounded-full font-black uppercase mb-2 inline-block">Flash Deal</span>
-                        <h2 class="text-xl font-black italic uppercase leading-none">Especial Natal</h2>
-                        <p class="text-[11px] opacity-70 mt-1 font-medium">Sosa agora, entrega diretu!</p>
-                    </div>
-                    <i class="fa-solid fa-gamepad text-6xl absolute -right-4 -bottom-2 opacity-20 rotate-12"></i>
+        <div class="p-3">
+            <div class="flex items-center gap-2 mb-4 border-l-4 border-orange-500 pl-2">
+                <h2 class="font-black text-gray-800 uppercase italic text-sm">Sasan Gaming (11)</h2>
+            </div>
+            <div class="grid grid-cols-2 gap-2" id="product-grid">
                 </div>
+        </div>
+
+        <div class="p-3 space-y-3 mb-40">
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <label class="text-[10px] font-black text-gray-400 uppercase block mb-2">Fatin Entrega:</label>
+                <select id="ongkir" onchange="updateTotal()" class="w-full p-3 bg-white border rounded-lg text-sm font-bold outline-none focus:border-orange-500">
+                    <option value="0.00">BAUCAU VILA (FREE)</option>
+                    <option value="2.50">VENILALE (+$2.50)</option>
+                    <option value="3.50">LAGA (+$3.50)</option>
+                    <option value="5.00">DILI (+$5.00)</option>
+                </select>
             </div>
 
-            <div class="px-4 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="font-black text-gray-800 uppercase italic text-sm tracking-tight border-l-4 border-orange-500 pl-2">Hot Items</h3>
-                    <span class="text-[10px] font-bold text-gray-400">11 Items Loaded</span>
-                </div>
-                <div class="grid grid-cols-2 gap-3" id="product-grid">
-                    </div>
+            <div class="bg-white p-4 rounded-xl border-2 border-orange-500/20 shadow-sm">
+                <label class="text-[10px] font-black text-orange-600 uppercase block mb-2">Dados Kliente:</label>
+                <input type="text" id="custName" placeholder="Naran Kompletu" class="w-full p-3 bg-gray-50 border rounded-lg text-sm font-bold outline-none mb-2 focus:border-orange-500">
+                <input type="number" id="custPhone" placeholder="Númeru WhatsApp" class="w-full p-3 bg-gray-50 border rounded-lg text-sm font-bold outline-none focus:border-orange-500">
             </div>
+        </div>
 
-            <div class="px-4 space-y-4">
-                <div class="bg-gray-50 p-5 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex items-center gap-2 mb-4">
-                        <i class="fa-solid fa-truck-ramp-box shopee-text"></i>
-                        <h3 class="font-black text-xs uppercase text-gray-700 tracking-wide">Fatin Entrega</h3>
-                    </div>
-                    <select id="ongkir" onchange="updateTotal()" class="w-full p-4 bg-white border-2 border-gray-100 rounded-xl text-sm font-bold outline-none cursor-pointer focus:border-orange-500 transition-all">
-                        <option value="0.00">BAUCAU VILA (FREE)</option>
-                        <option value="2.50">VENILALE (+$2.50)</option>
-                        <option value="3.50">LAGA (+$3.50)</option>
-                        <option value="5.00">DILI (+$5.00)</option>
-                    </select>
-                </div>
-
-                <div class="bg-gray-50 p-5 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex items-center gap-2 mb-4">
-                        <i class="fa-solid fa-id-card shopee-text"></i>
-                        <h3 class="font-black text-xs uppercase text-gray-700 tracking-wide">Dados Kontaktu</h3>
-                    </div>
-                    <input type="text" id="custName" placeholder="Naran Kompletu" class="w-full p-4 bg-white border-2 border-gray-100 rounded-xl text-sm font-bold outline-none mb-3 focus:border-orange-500 transition-all shadow-inner">
-                    <input type="number" id="custPhone" placeholder="Nu. WhatsApp (Ex: 7335...)" class="w-full p-4 bg-white border-2 border-gray-100 rounded-xl text-sm font-bold outline-none focus:border-orange-500 transition-all shadow-inner">
-                </div>
+        <div class="sticky-bottom flex items-center shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
+            <div class="flex-1 px-5 py-3">
+                <p class="text-[9px] text-gray-400 font-bold uppercase">Total Pagamentu</p>
+                <p id="totalDisplay" class="text-xl font-black shopee-text">$0.00</p>
             </div>
-        </main>
-
-        <div class="sticky-bottom bg-white/80 backdrop-blur-xl border-t border-gray-100 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
-            <div class="flex items-center">
-                <div class="flex-1 px-6 py-4">
-                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Grand Total</p>
-                    <p id="totalDisplay" class="text-2xl font-black shopee-text tracking-tighter">$0.00</p>
-                </div>
-                <button onclick="kirimWA()" class="shopee-bg text-white px-8 py-8 font-black uppercase text-sm tracking-widest active:brightness-90 transition-all shadow-[-5px_0_20px_rgba(238,77,45,0.2)]">
-                    Checkout <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </div>
+            <button onclick="kirimWA()" class="shopee-orange text-white px-8 py-6 font-black uppercase text-sm active:bg-orange-700 transition-all">
+                Checkout <i class="fa-solid fa-paper-plane ml-1"></i>
+            </button>
         </div>
     </div>
 
     <div id="adminPanel" class="fixed inset-0 bg-white z-[1000] hidden overflow-y-auto">
-        <div class="max-w-md mx-auto min-h-screen bg-gray-50">
-            <header class="bg-gray-900 p-5 text-white flex justify-between items-center sticky top-0 shadow-xl">
-                <h2 class="font-black italic text-xl tracking-tighter uppercase">Admin Panel</h2>
-                <button onclick="closeAdmin()" class="bg-red-500 p-2 px-4 rounded-lg font-black text-xs uppercase tracking-widest">Close</button>
-            </header>
-            <div class="p-5">
-                <div class="flex justify-between items-center mb-6">
-                    <p class="text-xs font-black text-gray-400 uppercase tracking-widest">Recent Orders</p>
-                    <button onclick="clearOrders()" class="text-red-500 text-[10px] font-black border-2 border-red-100 px-3 py-1.5 rounded-full hover:bg-red-50">Clear Data</button>
-                </div>
-                <div id="orderList" class="space-y-4"></div>
-            </div>
-        </div>
+        <header class="bg-gray-900 p-5 text-white flex justify-between items-center sticky top-0">
+            <h2 class="font-black italic">ADMIN ORDERS</h2>
+            <button onclick="closeAdmin()" class="bg-red-500 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest">Taka</button>
+        </header>
+        <div id="orderList" class="p-4 space-y-4"></div>
     </div>
 
     <script>
@@ -135,7 +84,7 @@
             { id: 2, name: "Ugreen Charger 20W", price: 35, img: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
             { id: 3, name: "Sarung Jempol King", price: 5, img: "https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" },
             { id: 4, name: "Lightning Braided", price: 15, img: "https://i.ibb.co/k2wMSj5k/kabel-extension-lightening-braided-kabel.jpg" },
-            { id: 5, name: "Headset AKZ 6 Pro", price: 15, img: "https://i.ibb.co/bVRptC/akz-6-pro-hitam.jpg" },
+            { id: 5, name: "Headset AKZ 6 Pro", price: 15, img: "https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" },
             { id: 6, name: "Funcooler AL19", price: 15, img: "https://i.ibb.co/bT53nsg/funcooler-al19.jpg" },
             { id: 7, name: "Splitter Kaizer", price: 15, img: "https://i.ibb.co/Ndgc73wq/splitter-lightening-kaizer.jpg" },
             { id: 8, name: "Kipas Acome AF001", price: 15, img: "https://i.ibb.co/C5YLyLF8/kipas-AF001-dark-blue.webp" },
@@ -146,18 +95,14 @@
 
         function renderProducts() {
             document.getElementById('product-grid').innerHTML = products.map(p => `
-                <div class="product-card bg-white rounded-2xl p-3 shadow-sm flex flex-col justify-between">
-                    <div class="aspect-square w-full mb-3 flex items-center justify-center p-2">
-                        <img src="${p.img}" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div>
-                        <h3 class="product-name text-[10px] text-gray-500 font-bold uppercase leading-none h-6 overflow-hidden mb-1">${p.name}</h3>
-                        <p class="shopee-text font-black text-lg leading-none">$${p.price.toFixed(2)}</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-4 bg-gray-50 rounded-xl p-1.5 border border-gray-100">
-                        <button onclick="changeQty('q${p.id}', -1)" class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center font-bold text-gray-300 active:bg-gray-200">-</button>
+                <div class="product-card p-3 flex flex-col justify-between">
+                    <img src="${p.img}" class="w-full h-24 object-contain mb-2">
+                    <h3 class="text-[10px] text-gray-500 font-bold uppercase leading-tight h-8 overflow-hidden">${p.name}</h3>
+                    <p class="shopee-text font-black text-base">$${p.price.toFixed(2)}</p>
+                    <div class="flex items-center justify-between mt-2 bg-gray-50 rounded-lg p-1 border">
+                        <button onclick="changeQty('q${p.id}', -1)" class="w-8 h-8 font-bold text-gray-300">-</button>
                         <input type="number" id="q${p.id}" value="0" min="0" class="bg-transparent w-8 text-center text-xs font-black outline-none" readonly>
-                        <button onclick="changeQty('q${p.id}', 1)" class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center font-bold shopee-text active:bg-gray-200">+</button>
+                        <button onclick="changeQty('q${p.id}', 1)" class="w-8 h-8 font-bold shopee-text">+</button>
                     </div>
                 </div>
             `).join('');
@@ -175,70 +120,69 @@
                 let qty = parseInt(document.getElementById('q' + p.id).value) || 0;
                 sum += (qty * p.price);
             });
-            let shipping = parseFloat(document.getElementById('ongkir').value);
-            let total = sum > 0 ? sum + shipping : 0;
+            let ship = parseFloat(document.getElementById('ongkir').value);
+            let total = sum > 0 ? sum + ship : 0;
             document.getElementById('totalDisplay').innerText = `$${total.toFixed(2)}`;
         }
 
         function kirimWA() {
             let name = document.getElementById('custName').value.trim();
             let phone = document.getElementById('custPhone').value.trim();
-            let listWA = ""; let listInternal = []; let totalSasan = 0;
-            
+            let itemsText = "";
+            let listInternal = [];
+            let totalSasan = 0;
+
             products.forEach(p => {
                 let qty = parseInt(document.getElementById('q' + p.id).value) || 0;
                 if(qty > 0) {
-                    listWA += `✅ *${p.name}* (${qty}x)%0A`;
+                    itemsText += `✅ *${p.name}* (${qty}x)%0A`;
                     listInternal.push(`${p.name} (${qty}x)`);
                     totalSasan += (p.price * qty);
                 }
             });
 
             if(!name || !phone || totalSasan === 0) {
-                alert("⚠️ Favor Prense Naran, Nu. WA, no Hili Sasaan!");
+                alert("⚠️ Favor hatama Naran, Nu. WA, no Hili Sasaan!");
                 return;
             }
 
-            // SIMPAN DATA BA ADMIN
+            // SIMPAN DATA INTERNU (BACKUP)
             let order = { id: Date.now(), name: name, phone: phone, items: listInternal.join(", "), total: document.getElementById('totalDisplay').innerText, time: new Date().toLocaleString() };
             let allOrders = JSON.parse(localStorage.getItem('ziustore_orders')) || [];
             allOrders.unshift(order);
             localStorage.setItem('ziustore_orders', JSON.stringify(allOrders));
 
-            // HARUKA BA WA
-            let msg = `*ZIUSTORE ORDER*%0A━━━━━━━━━━━━━━━━━━━━%0A👤 *NARAN:* ${name.toUpperCase()}%0A📱 *WA:* ${phone}%0A📍 *FATIN:* ${document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text}%0A━━━━━━━━━━━━━━━━━━━━%0A*SASAN SOSA:*%0A${listWA}━━━━━━━━━━━━━━━━━━━━%0A💰 *TOTAL PAGU: ${document.getElementById('totalDisplay').innerText}*%0A━━━━━━━━━━━━━━━━━━━━`;
-            window.open(`https://wa.me/67073350229?text=${msg}`, '_blank');
+            // FORMAT LINK WHATSAPP SEGERA
+            let adminWA = "67073350229";
+            let shipText = document.getElementById('ongkir').options[document.getElementById('ongkir').selectedIndex].text;
+            let finalMsg = `*ZIUSTORE ORDER*%0A━━━━━━━━━━━━━━━━━━━━%0A👤 *NARAN:* ${name.toUpperCase()}%0A📱 *WA:* ${phone}%0A📍 *FATIN:* ${shipText}%0A━━━━━━━━━━━━━━━━━━━━%0A*SASAN SOSA:*%0A${itemsText}━━━━━━━━━━━━━━━━━━━━%0A💰 *TOTAL PAGU: ${document.getElementById('totalDisplay').innerText}*%0A━━━━━━━━━━━━━━━━━━━━`;
+            
+            // Uza link universal hodi iPhone la "Action Failed"
+            window.location.href = "https://api.whatsapp.com/send?phone=" + adminWA + "&text=" + finalMsg;
         }
 
         function loginAdmin() {
-            let pass = prompt("🔑 Admin Access:");
-            if(pass === "admin123") { showAdmin(); }
-        }
-
-        function showAdmin() {
-            document.getElementById('adminPanel').style.display = 'block';
-            let allOrders = JSON.parse(localStorage.getItem('ziustore_orders')) || [];
-            document.getElementById('orderList').innerHTML = allOrders.map(o => `
-                <div class="bg-white rounded-2xl p-5 border shadow-sm relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <p class="text-[9px] font-black text-gray-300 uppercase tracking-widest leading-none mb-1">${o.time}</p>
-                            <h4 class="font-black text-gray-800 text-lg leading-tight uppercase italic">${o.name}</h4>
+            if(prompt("Admin Password:") === "admin123") {
+                document.getElementById('adminPanel').style.display = 'block';
+                let orders = JSON.parse(localStorage.getItem('ziustore_orders')) || [];
+                document.getElementById('orderList').innerHTML = orders.map(o => `
+                    <div class="bg-gray-50 border rounded-xl p-4 shadow-sm">
+                        <div class="flex justify-between items-start mb-2">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase">${o.time}</p>
+                            <p class="font-black shopee-text">${o.total}</p>
                         </div>
-                        <p class="font-black shopee-text text-lg tracking-tighter">${o.total}</p>
+                        <h4 class="font-black text-gray-800 uppercase italic mb-2">${o.name}</h4>
+                        <div class="text-[11px] text-gray-600 bg-white p-2 rounded border mb-3">${o.items}</div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="https://wa.me/${o.phone}" target="_blank" class="bg-green-500 text-white text-center py-2 rounded-lg text-xs font-black uppercase">Chat</a>
+                            <a href="tel:${o.phone}" class="bg-blue-500 text-white text-center py-2 rounded-lg text-xs font-black uppercase">Call</a>
+                        </div>
                     </div>
-                    <div class="bg-gray-50 p-3 rounded-xl text-xs font-semibold text-gray-500 mb-4 border border-gray-100">${o.items}</div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <a href="https://wa.me/${o.phone}" target="_blank" class="bg-green-500 text-white text-center py-3 rounded-xl text-xs font-black uppercase tracking-widest shadow-lg shadow-green-100"><i class="fa-brands fa-whatsapp text-sm"></i> Chat</a>
-                        <a href="tel:${o.phone}" class="bg-blue-500 text-white text-center py-3 rounded-xl text-xs font-black uppercase tracking-widest shadow-lg shadow-blue-100"><i class="fa-solid fa-phone text-sm"></i> Call</a>
-                    </div>
-                </div>
-            `).join('') || "<p class='text-center text-gray-400 font-bold py-20'>No orders yet.</p>";
+                `).join('') || "<p class='text-center py-10 opacity-30'>No Orders</p>";
+            }
         }
 
         function closeAdmin() { document.getElementById('adminPanel').style.display = 'none'; }
-        function clearOrders() { if(confirm("Clear all orders?")) { localStorage.removeItem('ziustore_orders'); showAdmin(); } }
-
         renderProducts();
     </script>
 </body>
