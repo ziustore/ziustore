@@ -3,117 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIUSTORE SIMPEL</title>
+    <title>ZIUSTORE | Simple Order</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f4; }
-        .product-card { background: white; border-radius: 10px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .btn-wa { background-color: #25d366; color: white; font-weight: bold; width: 100%; padding: 15px; border-radius: 10px; margin-top: 10px; display: block; text-align: center; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; }
+        .product-card { background: white; border-radius: 12px; padding: 10px; border: 1px solid #ddd; }
+        .btn-order { background: #ee4d2d; color: white; width: 100%; padding: 15px; border-radius: 10px; font-weight: bold; font-size: 16px; margin-top: 15px; }
+        #notaModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; padding: 20px; overflow-y: auto; }
+        .nota-box { background: white; padding: 25px; border-radius: 20px; max-width: 400px; margin: auto; position: relative; border: 2px dashed #ccc; }
     </style>
 </head>
-<body class="p-4">
+<body class="p-4 flex justify-center">
 
-    <div class="text-center mb-6">
-        <h1 class="text-2xl font-bold text-orange-600">ZIUSTORE</h1>
-        <p class="text-xs text-gray-500">Order Gaming Gear Cepat & Mudah</p>
+    <div class="max-w-md w-full">
+        <div class="flex items-center gap-4 mb-6 bg-white p-4 rounded-2xl shadow-sm">
+            <img src="https://i.ibb.co/qYvPwykP/Whats-App-Image-2025-12-19-at-10-45-37-b356ef8c.jpg" class="w-12 h-12 rounded-full border-2 border-orange-500">
+            <div>
+                <h1 class="text-xl font-black text-orange-600 italic">ZIUSTORE</h1>
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Gaming & Mobile Accessories</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-6" id="displayProduk"></div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-md border-t-4 border-orange-500">
+            <label class="text-xs font-black text-gray-400 uppercase">Nama Lengkap</label>
+            <input type="text" id="namaInput" placeholder="Tulis nama anda..." class="w-full p-3 bg-gray-50 border rounded-lg mb-4 outline-none focus:border-orange-500">
+            
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-sm font-bold text-gray-500">TOTAL BELANJA</span>
+                <span id="totalDisplay" class="text-2xl font-black text-orange-600">$0.00</span>
+            </div>
+
+            <button onclick="buatNota()" class="btn-order active:scale-95 transition-all shadow-lg shadow-orange-200">
+                PROSES PESANAN
+            </button>
+        </div>
+
+        <p class="text-center text-[10px] text-gray-400 mt-6 font-bold uppercase tracking-widest">© 2025 Ziustore Timor-Leste</p>
     </div>
 
-    <div class="grid grid-cols-2 gap-3" id="produk">
+    <div id="notaModal">
+        <div class="nota-box shadow-2xl">
+            <div class="text-center border-b-2 border-dotted pb-4 mb-4">
+                <h2 class="text-2xl font-black italic text-orange-600">ZIUSTORE</h2>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Nota Pesanan Digital</p>
+            </div>
+            
+            <div class="text-[12px] font-mono space-y-2 mb-6 text-gray-700">
+                <p>NAMA: <span id="notaNama" class="font-bold"></span></p>
+                <p>TANGGAL: <span id="notaTgl" class="font-bold"></span></p>
+                <hr class="border-dotted">
+                <div id="notaBarang"></div>
+                <hr class="border-dotted">
+                <div class="flex justify-between text-lg font-black mt-2">
+                    <span>TOTAL:</span>
+                    <span id="notaTotal" class="text-orange-600"></span>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-xl text-center mb-4">
+                <p class="text-[11px] font-bold text-blue-600 leading-tight">
+                    📸 SCREENSHOT NOTA INI<br>DAN KIRIM KE NOMOR: <br>
+                    <span class="text-lg">73350229</span>
+                </p>
+            </div>
+
+            <button onclick="tutupNota()" class="w-full bg-gray-200 text-gray-600 font-bold py-3 rounded-lg text-sm">TUTUP & EDIT</button>
         </div>
-
-    <div class="mt-8 bg-white p-4 rounded-xl shadow-md">
-        <h3 class="font-bold border-b pb-2 mb-4">Data Pesanan</h3>
-        
-        <label class="text-xs font-bold text-gray-400">NAMA LENGKAP</label>
-        <input type="text" id="naran" placeholder="Contoh: Alex">
-
-        <label class="text-xs font-bold text-gray-400 mt-4 block">LOKASI KIRIM</label>
-        <select id="fatin" onchange="hitung()">
-            <option value="0">BAUCAU VILA (FREE)</option>
-            <option value="2.5">VENILALE (+$2.50)</option>
-            <option value="3.5">LAGA (+$3.50)</option>
-            <option value="5">DILI (+$5.00)</option>
-        </select>
-
-        <div class="mt-6 p-4 bg-orange-50 rounded-lg text-center">
-            <p class="text-xs text-gray-500 font-bold uppercase">Total Tagihan</p>
-            <h2 id="totalDisplay" class="text-3xl font-black text-orange-600">$0.00</h2>
-        </div>
-
-        <button onclick="kirimWA()" class="btn-wa mt-4 shadow-lg active:scale-95">
-            HUBUNGI ADMIN (WHATSAPP)
-        </button>
     </div>
 
     <script>
-        const daftarSasan = [
-            { id: 1, nama: "Hyper X Cloud III", harga: 110, foto: "https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" },
-            { id: 2, nama: "Ugreen Charger 20W", harga: 35, foto: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
-            { id: 3, nama: "Sarung Jempol", harga: 5, foto: "https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" },
-            { id: 4, nama: "Lightning Braided", harga: 15, foto: "https://i.ibb.co/k2wMSj5k/kabel-extension-lightening-braided-kabel.jpg" },
-            { id: 5, nama: "Headset AKZ 6 Pro", harga: 15, foto: "https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" },
-            { id: 6, nama: "Funcooler AL19", harga: 15, foto: "https://i.ibb.co/bT53nsg/funcooler-al19.jpg" },
-            { id: 7, nama: "Splitter Kaizer", harga: 15, foto: "https://i.ibb.co/Ndgc73wq/splitter-lightening-kaizer.jpg" },
-            { id: 8, nama: "Kipas Acome AF001", harga: 15, foto: "https://i.ibb.co/C5YLyLF8/kipas-AF001-dark-blue.webp" },
-            { id: 9, nama: "HDMI 3in1 PX", harga: 15, foto: "https://i.ibb.co/N693FZGW/kabel-hdmi-ke-type-c-px.jpg" },
-            { id: 10, nama: "Video Capture PX", harga: 15, foto: "https://i.ibb.co/27L9fBnC/VIDEO-CAPTURE-HDMI-MEREK-PX.jpg" },
-            { id: 11, nama: "HyperX Earbuds", harga: 15, foto: "https://i.ibb.co/mr31wJVZ/hyper-X-cloud-earbuds-gaming.jpg" }
+        const sasan = [
+            { id: 1, n: "Hyper X Cloud III", h: 110, f: "https://i.ibb.co/s95BXxZN/heandset-hyper-x-cloud-III-edit-foto.jpg" },
+            { id: 2, n: "Ugreen Charger 20W", h: 35, f: "https://i.ibb.co/twJv4gTN/ugreen-20w-usb-c-charger-with-mfi-certified-lightning-cable-pd-usb-c-power-supply-usb-c-charging-plu.webp" },
+            { id: 3, n: "Sarung Jempol", h: 5, f: "https://i.ibb.co/Xf22qV6Z/sarung-jempol-gaming-ap-king.jpg" },
+            { id: 4, n: "Lightning Braided", h: 15, f: "https://i.ibb.co/k2wMSj5k/kabel-extension-lightening-braided-kabel.jpg" },
+            { id: 5, n: "Headset AKZ 6 Pro", h: 15, f: "https://i.ibb.co/bVRvptC/akz-6-pro-hitam.jpg" },
+            { id: 6, n: "Funcooler AL19", h: 15, f: "https://i.ibb.co/bT53nsg/funcooler-al19.jpg" },
+            { id: 7, n: "Splitter Kaizer", h: 15, f: "https://i.ibb.co/Ndgc73wq/splitter-lightening-kaizer.jpg" },
+            { id: 8, n: "Kipas Acome AF001", h: 15, f: "https://i.ibb.co/C5YLyLF8/kipas-AF001-dark-blue.webp" },
+            { id: 9, n: "HDMI 3in1 PX", h: 15, f: "https://i.ibb.co/N693FZGW/kabel-hdmi-ke-type-c-px.jpg" },
+            { id: 10, n: "Video Capture PX", h: 15, f: "https://i.ibb.co/27L9fBnC/VIDEO-CAPTURE-HDMI-MEREK-PX.jpg" },
+            { id: 11, n: "HyperX Earbuds", h: 15, f: "https://i.ibb.co/mr31wJVZ/hyper-X-cloud-earbuds-gaming.jpg" }
         ];
 
-        function tampilkanProduk() {
-            let html = '';
-            daftarSasan.forEach(s => {
-                html += `
-                <div class="product-card">
-                    <img src="${s.foto}" class="w-full h-24 object-contain">
-                    <p class="text-[10px] font-bold mt-2 h-8 overflow-hidden">${s.nama}</p>
-                    <p class="text-orange-600 font-bold">$${s.harga}</p>
-                    <input type="number" id="qty${s.id}" value="0" min="0" onchange="hitung()" class="text-center mt-2 !p-1">
+        function render() {
+            let res = '';
+            sasan.forEach(p => {
+                res += `
+                <div class="product-card flex flex-col items-center shadow-sm">
+                    <img src="${p.f}" class="w-16 h-16 object-contain mb-2">
+                    <p class="text-[9px] font-black text-center h-8 overflow-hidden uppercase leading-none text-gray-600">${p.n}</p>
+                    <p class="text-orange-600 font-black text-sm mb-2">$${p.h}</p>
+                    <input type="number" id="qty${p.id}" value="0" min="0" onchange="total()" class="w-full border p-1 text-center font-bold rounded-lg text-xs bg-gray-50">
                 </div>`;
             });
-            document.getElementById('produk').innerHTML = html;
+            document.getElementById('displayProduk').innerHTML = res;
         }
 
-        function hitung() {
-            let subtotal = 0;
-            daftarSasan.forEach(s => {
-                let q = document.getElementById('qty'+s.id).value || 0;
-                subtotal += (s.harga * q);
+        function total() {
+            let t = 0;
+            sasan.forEach(p => {
+                let qty = document.getElementById('qty'+p.id).value || 0;
+                t += (p.h * qty);
             });
-            let ongkir = parseFloat(document.getElementById('fatin').value);
-            let total = subtotal > 0 ? subtotal + ongkir : 0;
-            document.getElementById('totalDisplay').innerText = "$" + total.toFixed(2);
+            document.getElementById('totalDisplay').innerText = "$" + t.toFixed(2);
         }
 
-        function kirimWA() {
-            let nama = document.getElementById('naran').value;
-            let lokasi = document.getElementById('fatin').options[document.getElementById('fatin').selectedIndex].text;
-            let listSasan = "";
-            let adaSasan = false;
+        function buatNota() {
+            let nama = document.getElementById('namaInput').value;
+            let list = "";
+            let ada = false;
 
-            daftarSasan.forEach(s => {
-                let q = document.getElementById('qty'+s.id).value;
-                if(q > 0) {
-                    listSasan += `- ${s.nama} (${q}x)\n`;
-                    adaSasan = true;
+            sasan.forEach(p => {
+                let qty = document.getElementById('qty'+p.id).value;
+                if(qty > 0) {
+                    list += `<div class="flex justify-between"><span>${p.n} (x${qty})</span><span>$${p.h * qty}</span></div>`;
+                    ada = true;
                 }
             });
 
-            if(!nama || !adaSasan) {
-                alert("Isi nama dan pilih barang dulu ya!");
+            if(!nama || !ada) {
+                alert("Harap masukkan Nama dan pilih minimal 1 barang!");
                 return;
             }
 
-            let total = document.getElementById('totalDisplay').innerText;
-            let pesan = `Halo Ziustore,\n\nNama: ${nama}\nLokasi: ${lokasi}\n\nPesanan:\n${listSasan}\nTotal: ${total}`;
+            document.getElementById('notaNama').innerText = nama.toUpperCase();
+            document.getElementById('notaTgl').innerText = new Date().toLocaleString();
+            document.getElementById('notaBarang').innerHTML = list;
+            document.getElementById('notaTotal').innerText = document.getElementById('totalDisplay').innerText;
             
-            // Link paling simpel dan aman untuk semua HP
-            let url = "https://api.whatsapp.com/send?phone=67073350229&text=" + encodeURIComponent(pesan);
-            window.location.href = url;
+            document.getElementById('notaModal').style.display = 'flex';
         }
 
-        tampilkanProduk();
+        function tutupNota() {
+            document.getElementById('notaModal').style.display = 'none';
+        }
+
+        render();
     </script>
 </body>
 </html>
